@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../../modules/layui-master/dist/css/layui.css"/>
+    <!--全局样式-->
+
+    <script src="../../../modules/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../modules/layui-master/dist/layui.all.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../core/plgcore.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../PlgDialog/codebase/PlgDialog.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <!--PlgZtree组件 JS/css-->
+    <link rel="stylesheet" type="text/css" href="../codebase/PlgZtree.css">
+    <!-- <link rel="stylesheet" href="../../../assets/styles/css/plgui.css" /> -->
+
+
+    <script src="../../../modules/zTree_v3/js/jquery.ztree.core.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../../modules/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+
+
+    <script src="../codebase/PlgZtree.js" type="text/javascript" charset="utf-8">
+
+    </script>
+
+</head>
+
+<body style="background: #fff">
+
+<div id="app" style=" border: 1px solid #ddd ;padding: 20px; margin: 10px">
+
+</div>
+
+<div id="meunTree">
+
+</div>
+
+
+<script type="text/javascript">
+    var confing = {
+        renderer: "app",
+        url: "data2.json",
+
+    }
+    var tree = new PlgZtree(confing);
+
+    var getData = function (opts) {
+        var close = Prolog.loading2();
+        var obj = {};
+        //配置tree
+        Prolog.syncAjax({
+            url: opts,
+            type: 'get',
+            success: function (res) {
+                if (res.success) {
+                    //只把父节点拿出来
+                    obj = res.data.filter(function (item) {
+                        if (item.parentMenuId == 0) {
+                            item.isParent = true
+                            return item
+                        }
+                    })
+
+                } else {
+                    layer.msg("数据加载失败!");
+                }
+                close()
+            }
+        });
+        return obj
+    }
+
+    var confing2 = {
+        isExpand: true, //是否初始化时展开第一个父节点的所有内容
+        renderer: "meunTree",
+        skin: "menu-tree",
+        setData: getData("data2.json"), //url地址,
+        //  url: "data2.json",
+      //  toolBar: false,
+        //  delMenu: null,
+        toolBar2:{
+            isShow:true,
+            btn:[{
+                skin:"layui-btn-primary",
+                icon:"layui-icon layui-icon-delete",
+                text:"删除",
+                EventCallback:delTreeNodeClick
+            },
+            {   
+                skin:"layui-btn-normal",
+                icon:"layui-icon layui-icon-add-1",
+                text:"添加",
+                EventCallback:addTreeNodeClick
+            }
+        ]
+        },
+        setting: {
+            async: {
+                  enable: false,
+                   url:  "data2.json",
+                    type: "get",
+                    contentType: "application/json",
+                    dataType:"text",
+                    autoParam:["id"],
+                    headers:{"Authorization":token}
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                key: {
+                    title: "name"
+                },
+                simpleData: {
+                    enable: true,
+                    idKey: "menuId",
+                    pIdKey: "parentMenuId",
+                    rootPId: "0",
+                    id: 'id',
+                }
+            },
+            callback: {
+                //单击事件的回调
+                onClick: function (event, treeId, treeNode) {
+                    // //console.log(this.getZTreeObj(treeId))
+                    //console.log(treeId);
+                },
+                //复选框的回调
+                onCheck: function (e, treeId, treeNode) {
+
+                    // var zTree = this.getZTreeObj(treeId);
+                    //var nodes = zTree.getSelectedNodes();
+
+                    //console.log('treeNode :', treeNode);
+                    //console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                },
+                
+                //展开时的回调
+                beforeExpand: function (treeId, treeNode) {
+                    var close = Prolog.loading2();
+                    var zTree = this.getZTreeObj(treeId);
+                    var obj
+                    var children = treeNode.children;
+                    if (!children) {
+                        Prolog.ajax({
+                            url: "data2.json",
+                            type: 'get',
+                            success: function (res) {
+                                if (res.success) {
+                                    //只把父节点拿出来
+                                    //zTree.removeChildNodes(treeNode)                              
+                                    res.data.filter(function (item) {
+                                        if (item.parentMenuId == treeNode.menuId) {
+                                            if (treeNode)
+                                                return zTree.addNodes(treeNode, item);
+                                        }
+                                    });
+                                    children = treeNode.children;
+                                } else {
+                                    layer.msg("数据加载失败!");
+                                }
+                                close()
+                            },
+                            error: function () {
+                                close()
+                            }
+                        })
+
+                    } else {
+                        close()
+
+                    }
+
+                }
+            }
+        }
+    };
+ 
+    var tree2 = new PlgZtree(confing2);
+    //console.log(tree2)
+
+    /*   {
+        "id": "ab91b86c-0258-4ef8-960d-8bb9eccedc00",
+
+        "systemId": "oms",
+
+        "level": 1,
+        "path": "",
+        "enable": true,
+
+        "imagePath": "icon iconfont p-icon-fuwuqi",
+        "queryId": ""
+
+
+         "menuId": "m0090",
+        "name": "微服务",,
+         "parentMenuId": "0",
+        "leaf": false
+    } */
+
+
+    var nodeObj = {
+        id: Prolog.createRandomId(),
+        name: "新菜单",
+        systemId: null,
+        menuId: "m00" + Prolog.createRandomId(),
+        parentMenuId: 0,
+        level: 1,
+        enable: true,
+        leaf: false,
+        path: "",
+    };
+
+
+    //编辑菜单事件
+  
+
+
+    function addTreeNodeClick (event, zTree, treeNode) {
+        nodeObj.isParent = false;
+        if (!treeNode[0]) {
+            nodeObj.isParent = true;
+            nodeObj.parentMenuId = 0;
+        } else {
+            nodeObj.parentMenuId = treeNode.menuId;
+        }
+        var newTreeNode = zTree.addNodes(treeNode[0], nodeObj);
+        zTree.selectNode(newTreeNode[0]);
+    }
+
+    function delTreeNodeClick (event, zTree, treeNode) {
+        if (treeNode.length > 0) {
+            layer.confirm(`确认删除"${treeNode[0].name}"吗？`, function (index) {
+                layer.close(index)
+                zTree.removeNode(treeNode[0]);
+            });
+        } else {
+            layer.alert("请选择删除项")
+        }
+    }
+ /*    
+    //添加菜单事件
+    tree2.on("addTreeNodeClick", function (event, zTree, treeNode) {
+        nodeObj.isParent = false;
+        if (!treeNode) {
+            nodeObj.isParent = true;
+            nodeObj.parentMenuId = 0;
+        } else {
+            nodeObj.parentMenuId = treeNode.menuId;
+        }
+        var newTreeNode = zTree.addNodes(treeNode, nodeObj);
+        zTree.selectNode(newTreeNode[0]);
+    })
+    //删除菜单事件
+    tree2.on("delTreeNodeClick", function (event, zTree, treeNode) {
+        if (treeNode.length > 0) {
+            layer.confirm(`确认删除"${treeNode[0].name}"吗？`, function (index) {
+                layer.close(index)
+                zTree.removeNode(treeNode[0]);
+            });
+        } else {
+            layer.alert("请选择删除项")
+        }
+
+    }) */
+</script>
+
+</body>
+
+</html>

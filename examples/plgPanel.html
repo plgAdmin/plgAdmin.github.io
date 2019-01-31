@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlgPanel</title>
+    <link href="../../../modules/layui-master/dist/css/layui.css"/>
+    <script src="../../../modules/jquery/jquery.js"></script>
+    <script src="../../../modules/layui-master/dist/layui.all.js"></script>
+    <script src="../../../core/plgcore.js"></script>
+   
+    <!--PlgPanel组件 JS-->
+    <script src="../codebase/PlgPanel.js"></script>
+
+</head>
+<body >
+
+
+<div id="app">
+</div>
+<div id="app2" style="margin:10px">
+
+
+</div> 
+
+
+<script type="text/javascript">
+
+    var config={
+            title:"面板标题",
+            content:"测试内容",
+            style:"width:600px;height:400px"   
+             }
+
+    var Sidebar= new PlgPanel(config).renderTo("#app"); 
+    $("#app2").PlgPanel(config);
+
+
+</script>
+
+
+</body>
+</html>

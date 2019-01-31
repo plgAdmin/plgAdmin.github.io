@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <title>PlgTabs</title>
+  <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.css" />
+  <link rel="stylesheet" href="../dist/css/plg.css" />
+  <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../dist/js/plg.js"></script>
+</head>
+
+<body style="background: #fff">
+  <div id="app2">
+  </div>
+
+
+
+  <script type="text/javascript">
+    var config2 = {
+      indexActive: 0, //初始化默认选中项
+      skin: "normal",
+      allowClose: true,
+      content: [{
+          title: "网站设置2",
+          template: `<div>我是网站设置2的内容</div>`
+        },
+        {
+          title: "商品管理2",
+          template: `<div>我是商品管理2的内容</div>`
+        },
+        {
+          title: "订单管理2",
+          template: `<div>我是订单管理2的内容</div>`
+        },
+        {
+          title: "网站设置2",
+          url: "./tabs/demo.html"
+        },
+        {
+          title: "商品管理2",
+          url: "./tabs/demo.html"
+        },
+        {
+          title: "订单管理2",
+          url: "./tabs/demo.html"
+        }
+
+      ]
+    };
+
+    var tabs2 = new PlgTabs(config2).renderTo("app2").on(function (ele) {
+      console.log(ele);
+    });
+
+    console.log('tabs2...');
+    console.log(tabs2);
+    console.log('tabs2...');
+  </script>
+
+</body>
+
+</html>

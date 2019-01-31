@@ -1,27 +1,12 @@
 {
-  "name": "gulp_structured",
+  "name": "plgadmin.github.io",
   "version": "0.0.1",
-  "description": "gulp ES6",
-  "main": "index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development gulp",
-    "build": "cross-env NODE_ENV=production gulp build && node ./workflow/getDistDirSize.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "1. 主要适用于PlgUI项目的打包，做一个demo",
+  "main": "Gulpfile.js",
+  "directories": {
+    "example": "examples"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/krui0728/study.git"
-  },
-  "keywords": [
-    "gulp",
-    "ES6"
-  ],
-  "author": "krui <krui0728@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/krui0728/study/issues"
-  },
-  "homepage": "https://github.com/krui0728/study#readme",
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
@@ -46,5 +31,20 @@
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.1"
-  }
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development gulp",
+    "build": "cross-env NODE_ENV=production gulp build && node ./workflow/getDistDirSize.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plgAdmin/plgAdmin.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plgAdmin/plgAdmin.github.io/issues"
+  },
+  "homepage": "https://github.com/plgAdmin/plgAdmin.github.io#readme"
 }

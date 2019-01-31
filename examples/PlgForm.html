@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>dhtmlxform</title>
+		<link rel="stylesheet" type="text/css" href="../../../modules/dhtmlx/form/codebase/dhtmlxform.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../modules/dhtmlx/form/skins/web/dhtmlxform.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../modules/layui-master/dist/css/layui.css"/>
+		
+		<script src="../../../modules/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../modules/layui-master/dist/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../modules/dhtmlx/form/codebase/dhtmlxform.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../core/plgcore.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="../codebase/PlgForm.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		<style type="text/css">
+			#form1 {margin:50px;}
+		</style>
+
+	</head>
+	<body>
+		
+		<div id="form1" class="fm"></div>
+		
+		
+		<script type="text/javascript">
+			
+			var config = {
+				renderer:"form1",
+				items:[
+          {type:"settings", position:"label-left", width:500, labelWidth:80},
+          {type: "fieldset", name:"calculator", label: "用户", list:[
+            {type: "input", name: 'username', label: '用户名:', placeholder: '请输入用户名', width:400},
+            {type:"combo", name:"nickname", label:"昵称:", placeholder: '请输入昵称', width:400},
+            {type:"input", name:"phone", label:"联系方式:", placeholder: '请输入联系方式', width:400},
+            {type:"button", name:"save", width:50, offsetTop:2, value:"保存"}
+          ]}
+				]
+			};
+			
+			var form1 = new PlgForm(config);
+
+			console.dir(form1)
+
+
+
+		</script>
+		
+	</body>
+</html>

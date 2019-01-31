@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgDate</title>
+
+  <link rel="stylesheet" type="text/css" href="../../../modules/layui-master/dist/css/layui.css" />
+  <script src="../../../modules/jquery/jquery.js"></script>
+  <script src="../../../modules/layui-master/dist/layui.all.js"></script>
+  <script src="../../../core/plgcore.js"></script>
+
+  <!--PlgPlgDate组件 JS-->
+  <script src="../codebase/PlgDate.js"></script>
+</head>
+
+<body style="background: #fff">
+
+  <div id="app"></div>
+
+  <div id="app2"></div>
+  <div id="app3">
+
+    <input type="text" class="layui-input" id="text">
+    <div class="layui-form">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <input type="text2 " class="layui-input ta" id="text3">
+        </div>
+        <div class="layui-inline">
+
+          <input type="text2 " class="layui-input " id="text2">
+        </div>
+      </div>
+    </div>
+
+    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+
+    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+
+    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+
+
+    <script type="text/javascript">
+      var date = plgDate.render({
+        elem: "#text"
+      })
+
+      //console.log(date)
+
+      var config = {
+        value: new Date(),
+        type: 'month'
+
+      }
+      //如果绑定多个 是多个相同元素
+      // $(element).each(function () {
+
+      //   plgDate.render({
+      //     elem: this
+      //   });
+      // })
+
+      var date2 = $('.test-item').plgDateRender(config)
+
+      //console.log(date2)
+    </script>
+
+</body>
+
+</html>

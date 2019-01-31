@@ -1,0 +1,60 @@
+
+
+// overflow-y: auto;00
+.layui-tab.layui-tab-brief.plgtabs {
+  margin-top: 0;
+  position: absolute;
+  left: 230px;
+  top: 50px;
+  width: auto;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
+    
+  
+   &>.layui-tab-content{
+
+    position: absolute;
+    top: 38px;
+    right: 0px;
+    margin-right: -18px;
+     left: 0;
+     bottom: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  &>.layui-tab-title{
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    z-index: 222;
+    left: 0;
+    right: 0;
+     li{
+      &:nth-child(1){
+        padding: 0 20px;
+        border-right: 1px solid #e5e5e5;
+        .layui-icon{
+          color: #999;
+        }
+        i.layui-tab-close{
+          display: none;
+        }
+  
+      }
+
+    }
+   
+  
+    .layui-this{
+      color:#666;
+      background-color: #fff;
+      &:after{
+        border-bottom: 2px solid #ff3300;
+      }
+    }
+
+
+  }
+}

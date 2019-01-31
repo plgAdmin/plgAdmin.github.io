@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlgSideAccordion</title>
+    <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.css" />
+    <link rel="stylesheet" href="../dist/css/plg.css" />
+    <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../dist/js/plg.js"></script>
+
+
+</head>
+<body>
+
+
+<div id="app">
+</div>
+<div id="app2">
+</div>
+<div style=" height: 99999px"></div>
+<script>
+    var Sidebar= new PlgSideAccordion(
+        {
+            url:"data.json",
+            isTrigger:true,
+            menuClick:function (data) {
+                var getCurrent=data.getCurrent;
+                //console.log(data)
+
+            }
+        }
+    ).renderTo("app");
+
+ /*   var Sidebar=$("#app").PlgSideAccordion(
+        {
+            url:"data.json",
+            isTrigger:true,
+            menuClick:function (data) {
+             var getCurrent=data.getCurrent;
+
+            }
+        }
+    );*/
+        //console.log(Sidebar)
+
+
+</script>
+
+
+</body>
+</html>
