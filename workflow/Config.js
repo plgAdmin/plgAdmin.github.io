@@ -12,12 +12,12 @@ module.exports = {
   watchPath: {
     lessPath: './src/styles/**/*.less',
     jsPath: './src/javascripts/*.js',
-    imagesPath: './src/images/'
+    imagesPath: './src/assets/'
   },
   input: {
     lessPath: './src/styles/plgui.less',
     jsPath: './src/javascripts/*.js',
-    imagesPath: './src/images/**/*'
+    imagesPath: './src/assets/**/*'
   },
   distPath: './dist',
   output: {

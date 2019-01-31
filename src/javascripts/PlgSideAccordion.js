@@ -422,7 +422,7 @@
                             var parents = $(eve).parents(".s-item"),
                                 menuid = parents.attr("menu-id"); 
                                 if(!menuid) return
-                                leaf=Boolean(_this.meunPanelThis.getData.mapAll[menuid].leaf);
+                                var leaf=Boolean(_this.meunPanelThis.getData.mapAll[menuid].leaf);
                                 
                                 _this.dom.meunSoroll.find(".nav-last").attr("data-show", "");
                                 _this.removerShowList();

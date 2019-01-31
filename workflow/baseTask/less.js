@@ -17,7 +17,7 @@ module.exports = (gulp, config, plugins) => {
       modify: function(url, filePath) {
 
         // url = url.replace('../../assets/', '../assets/');
-        url = url.replace(/.+images/g, '../images/');
+        url = url.replace(/.+assets/g, '../images');
         
 
         return url;

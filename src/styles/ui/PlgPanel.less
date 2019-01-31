@@ -1,0 +1,113 @@
+
+@bord:#d9edf7;
+@card_body:#f6fafe;
+@title_color:#336699;
+@REM:100rem;
+
+
+.auto_height() {
+    height: auto;
+    line-height: 20/@REM;
+    padding: 7/@REM 9/@REM;
+};
+.PlgPanel{
+    line-height:normal; 
+    .layui-input{        
+        .auto_height();
+        padding: 6/@REM 9/@REM;
+
+        
+
+    };
+    .layui-btn-sm{
+        .auto_height();
+    };
+    .layui-input-block{
+        margin-left: 100/@REM;
+    }
+    .text-info{
+        padding: 7/@REM 9/@REM ;
+        line-height: 20/@REM;
+        color: #666;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        &.bj{
+            transition: all 0.2s;
+            background: rgba(255,255,255,0.7);
+            border-radius:4/@REM; 
+            &:hover{
+                transition: all 0.2s;
+                color: #222;
+                background: rgba(255,255,255,1);
+
+            }
+
+        }
+    };
+    .more_group{
+        float: right;
+        font-size: 0;
+
+    }
+    .layui-card-header{
+        padding: 0 4/@REM 0 15/@REM;
+    }
+    .title{
+        display: inline-block;
+        position: relative;
+        font-size: 14/@REM;
+        font-weight: 600;
+    }
+    .layui-form-label{
+        padding: 7/@REM 0;
+        width: 100/@REM;
+       
+    }
+    .layui-form-item{
+        margin-bottom: 0
+    }
+    &.skin_2{
+        .skin_1();
+       
+        background: #fff;
+
+    }
+    &.skin_1{
+        border: 1px solid @bord;
+        box-shadow: 0 1/@REM 2/@REM 0 @bord;
+        background: @card_body;
+     
+        .layui-form-label{
+        
+            color: @title_color;
+        }
+        
+        .layui-card-header{
+            background:#fff;
+            border-bottom-color:@bord;
+            .title{
+            
+                color:@title_color;
+        
+
+                &.io{
+                    padding-left:10/@REM; 
+                    &:before{
+                        content: "";
+                        position: absolute;
+                        width: 4/@REM;
+                        height: 4/@REM;
+                        top:50%;
+                        margin-top: -2/@REM;
+                        left:-3/@REM;
+                        border-radius: 50%;
+                        background: #529dff;
+                    }
+
+                }
+            }         
+        }
+
+    }
+}

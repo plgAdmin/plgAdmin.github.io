@@ -1,42 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>PlgPanel</title>
-    <link href="../../../modules/layui-master/dist/css/layui.css"/>
-    <script src="../../../modules/jquery/jquery.js"></script>
-    <script src="../../../modules/layui-master/dist/layui.all.js"></script>
-    <script src="../../../core/plgcore.js"></script>
-   
-    <!--PlgPanel组件 JS-->
-    <script src="../codebase/PlgPanel.js"></script>
+    <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.rem.css" />
+    <link rel="stylesheet" href="../dist/css/plg.css" />
+    
+    <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../vendors/vipspa-master/build/vipspa.js"></script>
+
+    <script src="../dist/js/plg.js"></script>
+
+    <!--引入第三方图标样式-->
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
 
 </head>
-<body >
+
+<body style="background: #e6e6e6">
 
 
-<div id="app">
-</div>
-<div id="app2" style="margin:10px">
+    <div id="app" style="padding:20px;">
+
+    </div>
+    <div id="app2" style="padding:20px;">
+
+    </div>
 
 
-</div> 
+    <div id="app3" style="margin:10px">
+        <div class="layui-card PlgPanel skin_1">
+            <div class="layui-card-header">
+                <div class="title io">基本信息</div>
+                <div class="more_group"><a class="layui-btn layui-btn-sm layui-btn-normal" href="javascript:;">按钮</a></div>
+            </div>
+            <div class="layui-card-body">
+                <form class="layui-form">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md3">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">货主编号：</label>
+                                <div class="layui-input-block">
+                                    <div class="text-info">货主编号</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md3">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">货主编号：</label>
+                                <div class="layui-input-block">
+                                    <div class="text-info bj">货主编号</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md3">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">货主编号：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md3">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">货主编号：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                        autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="layui-card PlgPanel skin_2">
+            <div class="layui-card-body">
+                <form class="layui-form" lay-filter="">
+                    <input type="checkbox" name="" title="写作" lay-skin="primary" checked>
+                    <input type="checkbox" name="" title="发呆" lay-skin="primary">
+                    <input type="checkbox" name="" title="禁用" lay-skin="primary" checked disabled>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        var PlgPanel_1 = new PlgPanel({
+            renderer: "app",
+            className: "apps",
+            style:"",
+            skin:1,
+            header:{
+                isShow:true,
+                title:"面板标题2",
+                moreBtn: [
+                {
+                name: "点击事件2",
+                icon: "layui-icon layui-icon-ok",
+                className: "add",
+                style: "width:100px",
+                onClick: function (){
+                }
+               },
+               {
+                name: "点击事件2",
+                icon: "layui-icon layui-icon-ok",
+                className: "add",
+                style: "width:100px",
+                onClick: function (){
+                }
+               }
+              ],  
+            },
+           defaultBody:{
+                layoutCol:4,
+                valueBj: true,
+                cols:[[{                        
+                        label: "标题1",
+                        value: "value1",
+                        type: "text",
+                        layoutCol:3,
+                        offset:0,
+                    },
+                    {
+                        label: "标题2",
+                        value: "value2",
+                        type: "text",
+                    },
+                    {
+                        label: "标题3",
+                        value: "value3",
+                        type: "text",
+                    },
+                    {
+                        label: "标题4",
+                        value: "value4",
+                        type: "input",
+                    }
+                ]] 
+            },
+        })
 
-    var config={
-            title:"面板标题",
-            content:"测试内容",
-            style:"width:600px;height:400px"   
-             }
+        console.log(PlgPanel_1)
+        var PlgPanel_2 = new PlgPanel({
+            renderer: "app2",
+            className: "apps2",
+            style: "",
+            skin:2,
+            header:{
+                isShow:true,
+                title:"app2",
+                moreBtn: [
+                {
+                name: "点击事件app2",
+                icon: "layui-icon layui-icon-ok",
+                className: "add",
+                style: "width:100px",
+                onClick: function (){
+                    
+                }
+               }
+              ],  
+            },
+           defaultBody:{
+                url: "",
+                rowNum:4,
+                valueBj: true,
+                listData: [{
+                        label: "app2标题1",
+                        value: "app2value1",
+                        type: "text",
+                    },
+                    {
+                        label: "app2标题2",
+                        value: "app2value2",
+                        type: "text",
+                    },
+                    {
+                        label: "app2标题3",
+                        value: "app2value3",
+                        type: "input",
+                    },
+                    {
+                        label: "app2标题4",
+                        value: "app2value4",
+                        type: "input",
+                    }
+                ]
+            },
+         
+        })
 
-    var Sidebar= new PlgPanel(config).renderTo("#app"); 
-    $("#app2").PlgPanel(config);
-
-
-</script>
-
+   
+        layui.form.render();
+    </script>
 
 </body>
+
 </html>
