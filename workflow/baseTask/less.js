@@ -23,7 +23,7 @@ module.exports = (gulp, config, plugins) => {
     }))
     .pipe(plugins.autoprefixer(config.prefixerOptions))
     .pipe(plugins.if(config.env.isPro, plugins.csso()))
-    .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write()))
+    .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write('')))
     .pipe(plugins.rename({
       basename: config.output.cssName,
       extname: ".css"
