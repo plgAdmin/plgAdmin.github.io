@@ -5,73 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>PlgDialog组件的用例</title>
-  <!-- <link rel="stylesheet" type="text/css" href="../../../modules/dhtmlx/grid/codebase/dhtmlxgrid.css"/>
-	<link rel="stylesheet" type="text/css" href="../../../modules/dhtmlx/grid/skins/web/dhtmlxgrid.css"/>
-  <link rel="stylesheet" type="text/css" href="../../../modules/layui-master/dist/css/layui.css" />
-  <link rel="stylesheet" type="text/css" href="../../PlgGrid/codebase/PlgGrid.css"/> -->
+    <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../vendors/vipspa-master/build/vipspa.js"></script>
+    <script src="../dist/js/plg.js"></script>
 
-  <!-- <script src="../../../modules/jquery/jquery.js"></script> -->
-  <!-- <script src="../../../modules/layui-master/dist/layui.all.js"></script> -->
-<!-- 
-  <script src="../../../modules/dhtmlx/grid/codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../../modules/dhtmlx/form/codebase/dhtmlxform.js" type="text/javascript" charset="utf-8"></script>
-  
-  <script src="../../PlgForm/codebase/PlgForm.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../../PlgGrid/codebase/PlgGrid.js"></script>
+    <!--css-->
+    <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.rem.css" />
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+    <link rel="stylesheet" href="../dist/css/plg.css" />
+ 
 
-  <script src="../../PlgForm/codebase/PlgForm.js"></script>
-  <script src="../../../core/plgcore.js"></script>
-  <script src="../codebase/PlgDialog.js"></script> -->
-
-  <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.css" />
-  <link rel="stylesheet" href="../dist/css/plg.css" />
-  <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
-  <script src="../vendors/layui-master/dist/layui.all.js"></script>
-  <script src="../dist/js/plg.js"></script>
 </head>
-<body>
-  <div id="demo1"></div>
-
-  <script>
-    
-    PlgDialog.showUploadDialog();   // 此方法不好使用，需要重新构思需求，做好切割的准备
-
-    // function (plgGrid, callback, opts)
-
-  //   var opts = {
-  //     title: '这是只是一个测试的demo'
-  //   }
+<body style="background: #fff; ">
 
 
-  //   var opts2 = {
-  //     skin:"terrace",
-  //     //renderer:"grid",
-  //     columns:[
-  //       {id:"id",name:"id",type:'txt',width:200,hidden:true},
-  //       {id:"platformId",name:"平台",type:'ro'},
-  //       {id:"enable",name:"是否可用",type:'ch'},
-  //       {id:"createTime",name:"创建时间",type:'ro'},
-  //       {id:"creatorId",name:"创建人",type:'ro'}
-  //     ],
-  //     filters:["#text_filter", "#select_filter","#numeric_filter","#text_filter","#text_filter"],
-  //     multiselect:true,
-  //     url:"data.json",//数据接口
-  //     type:"get",//数据提交方式，默认为get
-  //     params:{},//查询提交参数，分页参数默认为pageNum,pageSize
-  //     page:true, //是否启用分页
-  //     totalCount:"totalCount" //总记录数字段，默认totalCount
-  // 　};
-  //   var grid2 = $("#demo1").initPlgGrid(opts2);	
+  <div style="padding: 20px">
+  
 
-    // PlgDialog.showGridDialog(null, null, opts); // 此方法对外部还有依赖，不好使用
-    // PlgDialog.showUploadDialog();
-
-    // 这个比较好用，但是用法与其他的API风格不一致
-    // var loading = PlgDialog.loading2();
-    // setTimeout(function(){
-    //   loading();
-    // }, 4000);
-
+  <button id="dom_01" class="layui-btn">询问框</button>
+  <button id="dom_02" class="layui-btn">消息层</button>
+  <button id="dom_03" class="layui-btn">自定页</button>
+  <button id="dom_04" class="layui-btn">tab页</button>
+  <button id="dom_05" class="layui-btn">loadn层</button>
+  <button id="dom_06" class="layui-btn">tips</button>
+  </div>
+  
+  <script type="text/javascript">
+  
+  PlgDialog.ready(function () {
+  PlgDialog.msg('很高兴一开场就见到你');
+  });
+  
+  //询问框
+  document.querySelector("#dom_01").onclick = function () {
+  console.dir(PlgDialog);
+  //询问框
+  PlgDialog.confirm(`是否删除吗？`, {
+  title: '删除提示',
+  btn: ['确定', '取消']
+  }, function (index) {
+  PlgDialog.close(index)
+  
+  });
+  
+  }
+  
+  //消息层
+  document.querySelector("#dom_02").onclick = function () {
+  PlgDialog.msg('我是消息层');
+  
+  }
+  
+  document.querySelector("#dom_03").onclick = function () {
+  PlgDialog.open({
+  title: '自定页',
+  shadeClose: true,
+  area: ['640px', '480px'],
+  content: `<div >这里存放HTml内容</div>`, //iframe的url
+  yes: function (index, layero) {
+  
+  PlgDialog.close(index); //如果设定了yes回调，需进行手工关闭
+  
+  },
+  success: function (layero, index) {
+  //当你需要在层创建完毕时即执行一些语句，可以通过该回调。success会携带两个参数，分别是当前层DOM当前层索引。如：
+  console.log(layero, index);
+  
+  }
+  })
+  
+  }
+  
+  //自定页
+  document.querySelector("#dom_03").onclick = function () {
+  PlgDialog.open({
+  title: '自定页',
+  shadeClose: true,
+  area: ['640px', '480px'],
+  content: `<div >这里存放HTml内容</div>`, //iframe的url
+  yes: function (index, layero) {
+  
+  PlgDialog.close(index); //如果设定了yes回调，需进行手工关闭
+  
+  },
+  success: function (layero, index) {
+  //当你需要在层创建完毕时即执行一些语句，可以通过该回调。success会携带两个参数，分别是当前层DOM当前层索引。如：
+  console.log(layero, index);
+  
+  }
+  })
+  
+  }
+  
+  //tab页
+  document.querySelector("#dom_04").onclick = function () {
+  PlgDialog.tab({
+  area: ['600px', '300px'],
+  tab: [{
+  title: 'TAB1',
+  content: '内容1'
+  }, {
+  title: 'TAB2',
+  content: '内容2'
+  }, {
+  title: 'TAB3',
+  content: '内容3'
+  }]
+  });
+  
+  }
+  
+  //loading加载
+  document.querySelector("#dom_05").onclick = function () {
+  
+  var colse=PlgDialog.loading2();
+  //1秒后自动关闭加载层
+  setTimeout(function () {
+   // colse()
+  }, 1000)
+  
+  
+  }
+  // tips提示层
+  document.querySelector("#dom_06").onclick = function () {
+  
+  PlgDialog.tips('默认就是向右的', this);
+  
+  }
+  
+  
   </script>
-</body>
+  
+  </body>
 </html>
