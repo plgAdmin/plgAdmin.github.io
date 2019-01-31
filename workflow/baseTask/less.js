@@ -18,14 +18,12 @@ module.exports = (gulp, config, plugins) => {
 
         // url = url.replace('../../assets/', '../assets/');
         url = url.replace(/.+assets/g, '../images');
-        
-
         return url;
       }
     }))
     .pipe(plugins.autoprefixer(config.prefixerOptions))
     .pipe(plugins.if(config.env.isPro, plugins.csso()))
-    .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write()))
+    .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write('')))
     .pipe(plugins.rename({
       basename: config.output.cssName,
       extname: ".css"

@@ -15,8 +15,7 @@ require('./workflow/baseTask/cover')(gulp, config, plugins);
 require('./workflow/baseTask/server')(gulp, config, plugins);
 
 gulp.task('default', gulp.series(['del', 'watch', 'less', 'images', 'javascript', 'getDistFileSize', 'server'], (done) => {
-  
-  console.log('开始执行开发者模式');
+
   done();
 
 }));

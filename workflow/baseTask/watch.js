@@ -3,7 +3,6 @@
 module.exports = (gulp, config, plugins) => {
   gulp.task('watch', (done) => {
 
-    console.log('想知道你执行了多少次watchJs');
     gulp.watch([config.watchPath.lessPath, config.watchPath.imagesPath, config.watchPath.jsPath], gulp.series(['cover'], function(callback){
 
       callback();
