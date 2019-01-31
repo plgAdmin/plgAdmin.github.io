@@ -18,8 +18,6 @@ module.exports = (gulp, config, plugins) => {
 
         // url = url.replace('../../assets/', '../assets/');
         url = url.replace(/.+assets/g, '../images');
-        
-
         return url;
       }
     }))
