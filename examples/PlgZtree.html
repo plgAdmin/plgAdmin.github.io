@@ -3,50 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="../../../modules/layui-master/dist/css/layui.css"/>
-    <!--全局样式-->
+    <title>PlgZtree</title>
+    <link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.rem.css" />
+    <link rel="stylesheet" href="../dist/css/plg.css" />
 
-    <script src="../../../modules/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../modules/layui-master/dist/layui.all.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../core/plgcore.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../PlgDialog/codebase/PlgDialog.js" type="text/javascript" charset="utf-8"></script>
-
-
-    <!--PlgZtree组件 JS/css-->
-    <link rel="stylesheet" type="text/css" href="../codebase/PlgZtree.css">
-    <!-- <link rel="stylesheet" href="../../../assets/styles/css/plgui.css" /> -->
+    <script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../vendors/vipspa-master/build/vipspa.js"></script>
+    <script src="../vendors/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="../vendors/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
 
 
-    <script src="../../../modules/zTree_v3/js/jquery.ztree.core.min.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="../../../modules/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+    <script src="../dist/js/plg.js"></script>
 
-
-    <script src="../codebase/PlgZtree.js" type="text/javascript" charset="utf-8">
-
-    </script>
+    <!--引入第三方图标样式-->
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
 
 </head>
 
-<body style="background: #fff">
-
-<div id="app" style=" border: 1px solid #ddd ;padding: 20px; margin: 10px">
-
-</div>
+<body style="background: #e6e6e6; padding: 15px">
+    <div class="grid-container-full" style="height:100%" >
+        <div class="plg-flex">
+                <div class="layui-card plg-flex-item" style="flex: 0 0 auto;width: 300px">
+                        <div class="layui-card-header">组织管理</div>
+                          <div class="layui-card-body" id="meunTree" style="height: calc(100% - 42px);">
+                        </div>    
+                </div>
+                <div class="layui-card plg-flex-item">
+                        <div class="layui-card-header">详细信息</div>
+                </div>
+        </div>      
+    </div>
 
 <div id="meunTree">
 
 </div>
-
+</body>
 
 <script type="text/javascript">
-    var confing = {
-        renderer: "app",
-        url: "data2.json",
-
-    }
-    var tree = new PlgZtree(confing);
 
     var getData = function (opts) {
         var close = Prolog.loading2();
@@ -74,13 +68,13 @@
         return obj
     }
 
-    var confing2 = {
+  var confing2 = {
         isExpand: true, //是否初始化时展开第一个父节点的所有内容
         renderer: "meunTree",
         skin: "menu-tree",
-        setData: getData("data2.json"), //url地址,
+      //  initAjax:{url:"data2.json"},
+        setData: getData("./mockData/PlgZtree/data.json"), //url地址,
         //  url: "data2.json",
-      //  toolBar: false,
         //  delMenu: null,
         toolBar2:{
             isShow:true,
@@ -101,7 +95,7 @@
         setting: {
             async: {
                   enable: false,
-                   url:  "data2.json",
+                    url:  "./mockData/PlgZtree/data.json",
                     type: "get",
                     contentType: "application/json",
                     dataType:"text",
@@ -126,17 +120,11 @@
             callback: {
                 //单击事件的回调
                 onClick: function (event, treeId, treeNode) {
-                    // //console.log(this.getZTreeObj(treeId))
-                    //console.log(treeId);
+         
                 },
                 //复选框的回调
                 onCheck: function (e, treeId, treeNode) {
-
-                    // var zTree = this.getZTreeObj(treeId);
-                    //var nodes = zTree.getSelectedNodes();
-
-                    //console.log('treeNode :', treeNode);
-                    //console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                      
                 },
                 
                 //展开时的回调
@@ -147,7 +135,7 @@
                     var children = treeNode.children;
                     if (!children) {
                         Prolog.ajax({
-                            url: "data2.json",
+                            url: "./mockData/PlgZtree/data.json",
                             type: 'get',
                             success: function (res) {
                                 if (res.success) {
@@ -181,26 +169,10 @@
     };
  
     var tree2 = new PlgZtree(confing2);
-    //console.log(tree2)
 
-    /*   {
-        "id": "ab91b86c-0258-4ef8-960d-8bb9eccedc00",
-
-        "systemId": "oms",
-
-        "level": 1,
-        "path": "",
-        "enable": true,
-
-        "imagePath": "icon iconfont p-icon-fuwuqi",
-        "queryId": ""
-
-
-         "menuId": "m0090",
-        "name": "微服务",,
-         "parentMenuId": "0",
-        "leaf": false
-    } */
+    console.log(tree2)
+    console.log(tree2.getZTreeObj("meunTree"))
+  
 
 
     var nodeObj = {
@@ -242,33 +214,7 @@
             layer.alert("请选择删除项")
         }
     }
- /*    
-    //添加菜单事件
-    tree2.on("addTreeNodeClick", function (event, zTree, treeNode) {
-        nodeObj.isParent = false;
-        if (!treeNode) {
-            nodeObj.isParent = true;
-            nodeObj.parentMenuId = 0;
-        } else {
-            nodeObj.parentMenuId = treeNode.menuId;
-        }
-        var newTreeNode = zTree.addNodes(treeNode, nodeObj);
-        zTree.selectNode(newTreeNode[0]);
-    })
-    //删除菜单事件
-    tree2.on("delTreeNodeClick", function (event, zTree, treeNode) {
-        if (treeNode.length > 0) {
-            layer.confirm(`确认删除"${treeNode[0].name}"吗？`, function (index) {
-                layer.close(index)
-                zTree.removeNode(treeNode[0]);
-            });
-        } else {
-            layer.alert("请选择删除项")
-        }
-
-    }) */
 </script>
 
-</body>
 
 </html>
