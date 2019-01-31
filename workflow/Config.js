@@ -34,6 +34,6 @@ module.exports = {
     browserSync,
     reload,
     port: 3300,
-    browser: 'google chrome',
+    browser: 'chrome',
   }
 }

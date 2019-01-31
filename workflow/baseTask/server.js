@@ -7,10 +7,10 @@ module.exports = (gulp, config, plugins) =>{
   gulp.task('server', function (done) {
 
     config.server.browserSync.init({
-      startPath: './examples/cardList.html',
+      startPath: '/',
       port: config.server.port,
       // timestamps: true,   // 给文件添加文件指纹
-      open: false,
+      open: true,
       browser: config.server.browser,
       server: {
         baseDir: './'
