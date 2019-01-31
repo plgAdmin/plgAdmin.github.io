@@ -2,9 +2,6 @@
 module.exports = (gulp, config, plugins) => {
 
   gulp.task('images', (done) => {
-    
-    console.log('执行图片的转移功能');
-
     gulp.src(config.input.imagesPath)  // 此处的路径是相对于gulpfile来设置的
       .pipe(plugins.plumber({
         errorHandler: function (error) {
