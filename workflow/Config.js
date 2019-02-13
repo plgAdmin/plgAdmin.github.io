@@ -15,7 +15,7 @@ module.exports = {
     imagesPath: './src/assets/'
   },
   input: {
-    lessPath: './src/styles/plgui.less',
+    lessPath: './src/styles/plg.less',
     jsPath: './src/javascripts/*.js',
     imagesPath: './src/assets/**/*'
   },

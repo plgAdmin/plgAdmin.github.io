@@ -11,7 +11,6 @@ module.exports = (gulp, config, plugins) => {
       }
     }))
     .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.init()))
-    
     .pipe(plugins.less())
     // .pipe(plugins.modifyCssUrls({
     //   modify: function(url, filePath) {
@@ -23,13 +22,9 @@ module.exports = (gulp, config, plugins) => {
     // }))
     .pipe(plugins.autoprefixer(config.prefixerOptions))
     .pipe(plugins.if(config.env.isPro, plugins.csso()))
+    .pipe(plugins.rename(config.output.cssName + '.css'))
     .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write('')))
-    .pipe(plugins.rename({
-      basename: config.output.cssName,
-      extname: ".css"
-    }))
     .pipe(plugins.size())
-
     .pipe(gulp.dest(config.output.cssPath))
     .pipe(plugins.if(config.env.isDev, config.server.reload({
       stream: true
