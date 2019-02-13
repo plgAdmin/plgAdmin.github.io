@@ -13,14 +13,14 @@ module.exports = (gulp, config, plugins) => {
     .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.init()))
     
     .pipe(plugins.less())
-    .pipe(plugins.modifyCssUrls({
-      modify: function(url, filePath) {
+    // .pipe(plugins.modifyCssUrls({
+    //   modify: function(url, filePath) {
 
-        // url = url.replace('../../assets/', '../assets/');
-        url = url.replace(/.+assets/g, '../images');
-        return url;
-      }
-    }))
+    //     // url = url.replace('../../assets/', '../assets/');
+    //     url = url.replace(/.+assets/g, '../images');
+    //     return url;
+    //   }
+    // }))
     .pipe(plugins.autoprefixer(config.prefixerOptions))
     .pipe(plugins.if(config.env.isPro, plugins.csso()))
     .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write('')))
