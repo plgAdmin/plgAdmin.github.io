@@ -1,5 +1,146 @@
 "use strict";
+;
+var Prolog = {};
+var GridBasePath = "/prologui/components/PlgGrid/codebase/images";
+var token = localStorage.getItem("authorization"); //获取元素的纵坐标 
 
+Prolog.getTop = function (e) {
+  var offset = e.offsetTop;
+
+  if (e.offsetParent != null) {
+    offset += Prolog.getTop(e.offsetParent);
+  }
+
+  ;
+  return offset;
+}; // 获取元素的横坐标
+
+
+Prolog.getLeft = function (e) {
+  var offset = e.offsetLeft;
+
+  if (e.offsetParent != null) {
+    offset += Prolog.getLeft(e.offsetParent);
+  }
+
+  ;
+  return offset;
+};
+
+Prolog.hasJson = function (jsonArray, json) {
+  for (var i = 0; i < jsonArray.length; i++) {
+    var b = true;
+
+    for (var key in jsonArray[i]) {
+      if (jsonArray[i][key] != json[key]) {
+        b = false;
+        break;
+      }
+    }
+
+    if (b) return i;
+  }
+
+  return -1;
+};
+
+Prolog.ajax = function (options) {
+  var pdefault = {
+    timeout: 30000,
+    dataType: "json"
+  };
+  var opt = $.extend(true, pdefault, options);
+
+  opt.error = function (XMLHttpRequest, textStatus, errorThrown) {
+    layer.msg(textStatus);
+    if (options.error) options.error(XMLHttpRequest, textStatus, errorThrown);
+  };
+
+  opt.beforeSend = function (xhr) {
+    xhr.setRequestHeader("Authorization", token);
+
+    if (options.beforeSend) {
+      options.beforeSend(xhr);
+    }
+  };
+
+  $.ajax(opt);
+};
+
+Prolog.syncAjax = function (options) {
+  var pdefault = {
+    timeout: 30000
+  };
+  var opt = $.extend(true, pdefault, options);
+
+  opt.error = function (XMLHttpRequest, textStatus, errorThrown) {
+    layer.msg(textStatus);
+    if (options.error) options.error(XMLHttpRequest, textStatus, errorThrown);
+  };
+
+  opt.async = false;
+
+  opt.beforeSend = function (xhr) {
+    xhr.setRequestHeader("Authorization", token);
+
+    if (options.beforeSend) {
+      options.beforeSend(xhr);
+    }
+  };
+
+  $.ajax(opt);
+};
+
+Prolog.getFormById = function (systemId, menuId, formId) {
+  var myform = null;
+  var data = Prolog.getJsonData("/japi/sysform2/form", "GET", {
+    systemId: systemId,
+    menuId: menuId,
+    formId: formId,
+    id: systemId + "_" + menuId + "_" + formId
+  });
+
+  if (data != null && data.success == true) {
+    if (data.data != null && data.data.fields != null) {
+      myform = new PrologForm();
+      var formdata = JSON.parse(data.data.fields);
+      myform.init(formdata);
+    } else {
+      layer.msg("未定义表单内容");
+    }
+  }
+
+  return myform;
+};
+
+Prolog.createRandomId = function () {
+  return new Date().getTime() + Math.random().toString().substr(2, 5);
+};
+
+Prolog.loading = function (el) {
+  var loading = PlgDialog.loading(); //layui-layer14
+
+  $("#layui-layer-shade" + loading).appendTo("#" + el);
+  $("#layui-layer" + loading).appendTo("#" + el);
+  $("#layui-layer" + loading).css("left", "50%");
+  $("#layui-layer" + loading).css("margin-left", "-90px");
+  $("#layui-layer" + loading).css("top", 200 + "px");
+  return loading;
+};
+
+Prolog.closeLoading = function (id) {
+  layer.close(id);
+};
+
+Prolog.loading2 = function () {
+  var index = PlgDialog.load(2, {
+    shade: [0.6, '#fff'] //0.1透明度的白色背景
+
+  });
+  return function () {
+    PlgDialog.close(index);
+  };
+};
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 ;
@@ -2738,148 +2879,7 @@ if (!(typeof dhtmlXCalendarObject === 'undefined' || !dhtmlXCalendarObject)) {
   dhtmlXCalendarObject.prototype.lang = "ch";
 }
 
-;
-var Prolog = {};
-var GridBasePath = "/prologui/components/PlgGrid/codebase/images";
-var token = localStorage.getItem("authorization"); //获取元素的纵坐标 
 
-Prolog.getTop = function (e) {
-  var offset = e.offsetTop;
-
-  if (e.offsetParent != null) {
-    offset += Prolog.getTop(e.offsetParent);
-  }
-
-  ;
-  return offset;
-}; // 获取元素的横坐标
-
-
-Prolog.getLeft = function (e) {
-  var offset = e.offsetLeft;
-
-  if (e.offsetParent != null) {
-    offset += Prolog.getLeft(e.offsetParent);
-  }
-
-  ;
-  return offset;
-};
-
-Prolog.hasJson = function (jsonArray, json) {
-  for (var i = 0; i < jsonArray.length; i++) {
-    var b = true;
-
-    for (var key in jsonArray[i]) {
-      if (jsonArray[i][key] != json[key]) {
-        b = false;
-        break;
-      }
-    }
-
-    if (b) return i;
-  }
-
-  return -1;
-};
-
-Prolog.ajax = function (options) {
-  var pdefault = {
-    timeout: 30000,
-    dataType: "json"
-  };
-  var opt = $.extend(true, pdefault, options);
-
-  opt.error = function (XMLHttpRequest, textStatus, errorThrown) {
-    layer.msg(textStatus);
-    if (options.error) options.error(XMLHttpRequest, textStatus, errorThrown);
-  };
-
-  opt.beforeSend = function (xhr) {
-    xhr.setRequestHeader("Authorization", token);
-
-    if (options.beforeSend) {
-      options.beforeSend(xhr);
-    }
-  };
-
-  $.ajax(opt);
-};
-
-Prolog.syncAjax = function (options) {
-  var pdefault = {
-    timeout: 30000
-  };
-  var opt = $.extend(true, pdefault, options);
-
-  opt.error = function (XMLHttpRequest, textStatus, errorThrown) {
-    layer.msg(textStatus);
-    if (options.error) options.error(XMLHttpRequest, textStatus, errorThrown);
-  };
-
-  opt.async = false;
-
-  opt.beforeSend = function (xhr) {
-    xhr.setRequestHeader("Authorization", token);
-
-    if (options.beforeSend) {
-      options.beforeSend(xhr);
-    }
-  };
-
-  $.ajax(opt);
-};
-
-Prolog.getFormById = function (systemId, menuId, formId) {
-  var myform = null;
-  var data = Prolog.getJsonData("/japi/sysform2/form", "GET", {
-    systemId: systemId,
-    menuId: menuId,
-    formId: formId,
-    id: systemId + "_" + menuId + "_" + formId
-  });
-
-  if (data != null && data.success == true) {
-    if (data.data != null && data.data.fields != null) {
-      myform = new PrologForm();
-      var formdata = JSON.parse(data.data.fields);
-      myform.init(formdata);
-    } else {
-      layer.msg("未定义表单内容");
-    }
-  }
-
-  return myform;
-};
-
-Prolog.createRandomId = function () {
-  return new Date().getTime() + Math.random().toString().substr(2, 5);
-};
-
-Prolog.loading = function (el) {
-  var loading = PlgDialog.loading(); //layui-layer14
-
-  $("#layui-layer-shade" + loading).appendTo("#" + el);
-  $("#layui-layer" + loading).appendTo("#" + el);
-  $("#layui-layer" + loading).css("left", "50%");
-  $("#layui-layer" + loading).css("margin-left", "-90px");
-  $("#layui-layer" + loading).css("top", 200 + "px");
-  return loading;
-};
-
-Prolog.closeLoading = function (id) {
-  layer.close(id);
-};
-
-Prolog.loading2 = function () {
-  var index = PlgDialog.load(2, {
-    shade: [0.6, '#fff'] //0.1透明度的白色背景
-
-  });
-  return function () {
-    PlgDialog.close(index);
-  };
-};
 /*
 * @method 删除 PlgGrid 行数据
 * @param grid - grid控件
