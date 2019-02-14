@@ -18,4 +18,6 @@ https://plgadmin.github.io/
 | [✓]      | less             | 2019/1/21    |
 | [✓]      | css              | 2019/1/23    |
 | [✓]      | reload           | 2019/1/25    |
+| [✓]      | less的sourcemap   | 2019/2/14    |
+| [ ]      | js的依赖顺序问题    |              |
 
