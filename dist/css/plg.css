@@ -812,7 +812,7 @@ div.dhxcombo_dhx_web.dhxcombo_disabled div.dhxcombo_select_button {
   color: #333;
 }
 .userImg {
-  background: url("../../assets/core/default_handsome.jpg");
+  background: url("../images/core/default_handsome.jpg");
   width: 0.5rem;
   height: 0.5rem;
   display: inline-block;
@@ -827,7 +827,7 @@ div.dhxcombo_dhx_web.dhxcombo_disabled div.dhxcombo_select_button {
   width: 1.7rem;
   height: 0.17rem;
   margin-top: 0.16rem;
-  background: url("../../assets/core/logo.png") no-repeat 50% 50%;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAASCAYAAAAkLS6kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM5RUU0NkEyQTFDNzExRTg4NzJFQjE1MEJEQTVGOTdCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM5RUU0NkEzQTFDNzExRTg4NzJFQjE1MEJEQTVGOTdCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzlFRTQ2QTBBMUM3MTFFODg3MkVCMTUwQkRBNUY5N0IiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzlFRTQ2QTFBMUM3MTFFODg3MkVCMTUwQkRBNUY5N0IiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4z4KE+AAAJMUlEQVR42uxa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") no-repeat 50% 50%;
   -webkit-background-size: cover;
           background-size: cover;
 }
@@ -889,7 +889,7 @@ div.dhxcombo_dhx_web.dhxcombo_disabled div.dhxcombo_select_button {
   height: 0.4rem;
   /*   border-radius: 8/@REM;
   box-shadow: 2/@REM 2/@REM 3/@REM rgba(0,21,41,0.08); */
-  background-image: url("../../assets/core/loading_2.svg");
+  background-image: url("../images/core/loading_2.svg");
   -webkit-animation-name: layui-rotate;
           animation-name: layui-rotate;
   -webkit-animation-duration: 1s;
@@ -1335,7 +1335,7 @@ body.plg-open-hover .plg-sidebar .logo-path {
   background-position-x: 0.06rem;
 }
 body.plg-open-hover .plg-sidebar .logo-path.plg-logo {
-  background: url(../../assets/PlgSideAccordion/p_logo.png) center center no-repeat;
+  background: url(../images/PlgSideAccordion/p_logo.png) center center no-repeat;
   -webkit-background-size: 44% 44%;
           background-size: 44%;
   background-position-x: 0.15rem;
@@ -1372,13 +1372,13 @@ body.plg-open-hover .body-view {
   height: 0.5rem;
   margin: 0;
   padding: 0;
-  background: url(../../assets/PlgSideAccordion/c_logo2.png) center center no-repeat;
+  background: url(../images/PlgSideAccordion/c_logo2.png) center center no-repeat;
   background-position-x: 0.35rem;
   -webkit-background-size: 1.07rem 1.07rem;
           background-size: 1.07rem;
 }
 .plg-sidebar .plg-logo .logo-path.plg-logo {
-  background: url(../../assets/PlgSideAccordion/plg-logo.png) center center no-repeat;
+  background: url(../images/PlgSideAccordion/plg-logo.png) center center no-repeat;
   -webkit-background-size: 65% 65%;
           background-size: 65%;
 }
@@ -2346,7 +2346,7 @@ body.plg-open-hover .body-view {
   width: 0.11rem;
   height: 0.09rem;
   position: absolute;
-  background: url("../../../assets/PlgTabs/tab_link.png");
+  background: url("../../images/PlgTabs/tab_link.png");
   border-bottom: 0;
   top: 0.32rem;
   -webkit-background-size: cover;
@@ -2436,7 +2436,7 @@ website:	http://code.google.com/p/jquerytree/
   min-height: 23px;
 }
 .ztree li ul.line {
-  background: url(../../assets/PlgZtree/line_conn.gif) 2px 0 repeat-y;
+  background: url(../images/PlgZtree/line_conn.gif) 2px 0 repeat-y;
 }
 .ztree li a {
   width: 100%;
@@ -2506,8 +2506,8 @@ website:	http://code.google.com/p/jquerytree/
   background-color: transparent;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url("../../assets/PlgZtree/zTreeStandard.png");
-  *background-image: url("../../assets/PlgZtree/zTreeStandard.gif");
+  background-image: url("../images/PlgZtree/zTreeStandard.png");
+  *background-image: url("../images/PlgZtree/zTreeStandard.gif");
 }
 .ztree li span.button.chk {
   width: 13px;
@@ -2655,7 +2655,7 @@ website:	http://code.google.com/p/jquerytree/
 }
 .ztree li span.button.ico_loading {
   margin-right: 2px;
-  background: url(../../assets/PlgZtree/loading.gif) no-repeat scroll 0 0 transparent;
+  background: url(../images/PlgZtree/loading.gif) no-repeat scroll 0 0 transparent;
   vertical-align: top;
   *vertical-align: middle;
 }
@@ -2676,8 +2676,8 @@ span.tmpzTreeMove_arrow {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: -110px -80px;
-  background-image: url("../../assets/PlgZtree/zTreeStandard.png");
-  *background-image: url("../../assets/PlgZtree/zTreeStandard.gif");
+  background-image: url("../images/PlgZtree/zTreeStandard.png");
+  *background-image: url("../images/PlgZtree/zTreeStandard.gif");
 }
 ul.ztree.zTreeDragUL {
   margin: 0;
