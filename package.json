@@ -1,0 +1,53 @@
+{
+  "name": "prolog",
+  "version": "0.0.1",
+  "description": "gulp ES6",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node workflow/modifyVersion && cross-env NODE_ENV=development gulp",
+    "build": "node workflow/modifyVersion && cross-env NODE_ENV=production gulp build && node workflow/getDistFileSize && node workflow/stats",
+    "zip": "node workflow/stats && node workflow/pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krui0728/study.git"
+  },
+  "keywords": [
+    "gulp",
+    "ES6"
+  ],
+  "author": "krui <krui0728@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krui0728/study/issues"
+  },
+  "homepage": "https://github.com/krui0728/study#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "browser-sync": "^2.26.3",
+    "bs-html-injector": "^3.0.3",
+    "chalk": "^2.4.2",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-flatten": "^0.4.0",
+    "gulp-if": "^2.0.2",
+    "gulp-less": "^4.0.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-modify-css-urls": "^2.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.1",
+    "moment": "^2.24.0",
+    "node-tar.gz": "^1.0.0"
+  }
+}

@@ -1,0 +1,142 @@
+.from-sm{
+  font-size: 12.5px;;
+  .layui-container{
+    padding: 15px;
+  }
+  .layui-input-block{
+    min-height: 30px;
+    margin-left: 125px;
+    margin-right: 20px;
+  }
+  .layui-form-label{
+
+    height: 30px;
+    line-height: 30px;
+    //color: #154A84;
+    padding: 0;
+    margin-right: 10px;
+    position: relative;
+    display: block;
+    width: 115px;
+    font-weight: normal;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .code{
+      &:before{
+        font-size: 12.5px;
+        content: "*";
+      }
+    }
+  }
+  .layui-form-select{
+    font-size: 12.5px;
+    dl{
+      top: 29px;
+      dd{
+        line-height: 22px;
+      }
+    }
+  }
+
+
+  .layui-input{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}
+
+input[required]{
+  position: relative;
+
+  background-image: url(data:image/gif;base64,R0lGODlhHgAkANUAAPv7+/39/fr6+uvr6/b29vT09M7Ozvz8/Orq6s3NzcTExPPz8/j4+O/v7+Tk5NjY2NHR0ezs7MzMzO7u7srKyvLy8vX19d7e3vn5+d3d3e3t7fHx8fDw8Nzc3NLS0tbW1svLy9vb29XV1cPDw9PT0+jo6MnJyb+/v9ra2vf39+Xl5eLi4sfHx9DQ0M/Pz9fX19nZ2cDAwOHh4cXFxdTU1ODg4MLCwv////7+/gAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMwNjcgNzkuMTU3NzQ3LCAyMDE1LzAzLzMwLTIzOjQwOjQyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozMTFCRUU4MTg1QkIxMUU4OTU2NUQ2N0M5N0VDMjdDMiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozMTFCRUU4MDg1QkIxMUU4OTU2NUQ2N0M5N0VDMjdDMiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjlkZGVlMTg1LTg1YjgtMTFlOC04NjY3LWZmNWQ1ZGVlMDM1YiIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjlkZGVlMTg1LTg1YjgtMTFlOC04NjY3LWZmNWQ1ZGVlMDM1YiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAAAAAAALAAAAAAeACQAAAb/wJsQRywaj8iicHlLOp/M4XNqjDapWCs2G91StV5o18n8jo/DQAAnTYKVN8bg8njUJoJ29cwOOCgKHSoOKCMGA3pEbzcADywDB2xCAg4jMgFXcGV9GRIEVkIVCiV6YDcNMQVNNwclC6s3Giefe2U3AS0rQ4wgCFe3LyGZkrYECqqKAAa+SgMmAJlaNxEQecmH0RYgr5pLbAMk0MkJzIoECRXRXdMe1mwAEuVs59yK6wUzFsMHa0ocFBjU2ToAAVkRAQd+4bhAY5i0AALYJPug4VcBGxscjvEmKUCDT0IwGAiBqRbHKtCibEhAwl23RHE+iBjAYQICEYHEoeHTpwEMMAgGXHjI8GrYS6P2BKRgkBKpvU1uTpLhGcZkoqpHsUaFqjVrV6tOsb75Skzq1yVBAAA7);
+  background-position: right 50%;
+  background-repeat: no-repeat;
+
+
+}
+body{
+  height: 100%;
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+table[lay-size="sm"]{
+  input{
+    border: 0;
+  }
+  select{
+    height: inherit;
+    width: 100%;
+    background: transparent;
+
+  }
+}
+
+
+.lay_alert {
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+.lay_alert_info {
+  color: #31708f;
+  background-color: #f6fafe;
+  border-color: #d9edf7;
+
+}
+.lay_alert_warning{
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faf2cc;
+}
+
+.lay_alert_success{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+}
+.lay_alert_danger{
+
+
+  background-color: #fef0f0;
+
+  color: #a94442;
+  border-color: #ebcccc;
+}
+
+
+.layui-table thead tr, .layui-table-header, .layui-table-tool, .layui-table-patch, .layui-table-mend {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#f3f3f3));
+
+}
+.layui-table[lay-even] tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+select[lay-filter="selType"],.colSel{
+    border: none;
+  background-color: transparent;
+  min-width:100px;
+  height:inherit;
+  option{
+   padding:0 5px;
+  }
+
+}
+button[disabled],button[disabled]:hover{
+border: 1px solid #e6e6e6;
+background-color: #FBFBFB;
+color: #C9C9C9;
+cursor: not-allowed;
+opacity: 1;
+}
