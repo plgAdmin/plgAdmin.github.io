@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgTabs</title>
+  <!--css-->
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../dist/css/prolog.all-1.0.4.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../dist/js/prolog.all-1.0.4.js"></script>
+
+
+</head>
+
+
+<body style="background: #fff">
+
+  <h2>示例-Tab简洁风格</h2>
+  <div style="padding: 20px">
+    <div id="app"></div>
+  </div>
+
+  <script type="text/javascript">
+    var tab = new PlgTabs({
+      renderer: "app",
+      content: [{
+          title: "网站设置1",
+          template: `<div>我是网站设置1的内容</div>`
+        },
+        {
+          title: "商品管理1",
+          template: `<div>我是商品管理1的内容</div>`
+        },
+        {
+          title: "订单管理1",
+          template: `<div>我是订单管理1的内容</div>`
+        }
+      ]
+    })
+  </script>
+
+  <h2>示例-Tab卡片风格</h2>
+  <div style="padding: 20px">
+    <div id="app2"></div>
+  </div>
+  <script type="text/javascript">
+    var tab = new PlgTabs({
+      renderer: "app2",
+      skin: "card",
+      content: [{
+          title: "网站设置1",
+          template: `<div>我是网站设置1的内容</div>`
+        },
+        {
+          title: "商品管理1",
+          template: `<div>我是商品管理1的内容</div>`
+        },
+        {
+          title: "订单管理1",
+          template: `<div>我是订单管理1的内容</div>`
+        }
+      ]
+    })
+  </script>
+
+  <h2>示例-带删除的Tab</h2>
+
+  <div style="padding: 20px">
+    <div id="app3"></div>
+  </div>
+  <script type="text/javascript">
+    var tab = new PlgTabs({
+      renderer: "app3",
+      skin: "normal",
+      closeAll: true,
+      allowClose: true,
+      content: [{
+          title: "网站设置1",
+          template: `<div>我是网站设置1的内容</div>`
+        },
+        {
+          title: "商品管理1",
+          template: `<div>我是商品管理1的内容</div>`
+        },
+        {
+          title: "订单管理1",
+          template: `<div>我是订单管理1的内容</div>`
+        }
+      ]
+    });
+    tab.on(function (object) {
+      console.log(object.elem) //获取element对象
+      console.log(object.index) //获取当前tab下标值
+    })
+  </script>
+
+
+
+
+</body>
+
+</html>

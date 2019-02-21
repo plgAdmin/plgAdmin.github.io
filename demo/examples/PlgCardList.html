@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <title>cardList</title>
+
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../dist/css/prolog.all-1.0.4.css" />
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../dist/js/prolog.all-1.0.4.js"></script>
+  <style>
+    .plg-bgc {
+      width: 100%;
+      padding: 15px;
+      background-color: #edeef2;
+      box-sizing: border-box;
+    }
+
+    .plg-title h3 {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      text-align: left;
+      font-size: 18px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body class="plg-bgc">
+  <div class="plg-title">
+    <h3>设计稿的效果</h3>
+  </div>
+  <h3>此处的效果是渲染出来的</h3>
+  
+  <div id="demo"></div>
+
+  <script>
+    var config = {
+      renderer: 'demo',
+      data: {
+        zoneId: 1,
+        zoneName: '华中地区',
+        isShowAdd: true,
+        customerList: [{
+            id: 1,
+            name: '山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 2,
+            name: '山西国药',
+            description: '2015年4月，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 3,
+            name: '山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 4,
+            name: '山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 5,
+            name: '山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 6,
+            name: '山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          },
+          {
+            id: 7,
+            name: '山西国药山西国药山西国药山西国药山西国药山西国药山西国药山西国药',
+            description: '2015年4月，国药山西国康大药房连锁有限公司（以下简称国康大药房）成立，是由国药集团山西有限公司全资投资的子公司，注册资本为1000万元',
+            useNo: 3000,
+            btns: {
+              del: '删除',
+              update: '更新',
+              run: '运行'
+            }
+          }
+        ]
+      }
+    }
+
+    var plgCard = new PlgCardList(config);
+    
+    
+    plgCard.on('add', function(ind){
+      console.log('需要知道当前点击的是那个::' + ind);
+    })
+    plgCard.on('run', function(ind){
+      console.log('这里是run事件::' + ind);
+    })
+    plgCard.on('del', function(ind){
+      console.log('这里是del事件::' + ind);
+    })
+    plgCard.on('update', function(ind){
+      console.log('这里是update事件::' + ind);
+    })
+   
+  </script>
+
+
+</body>
+
+</html>

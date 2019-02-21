@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>PlgGrid</title>
+		<script src="../vendors/jquery/jquery-3.3.1.min.js"></script>
+		<script src="../vendors/layui-master/dist/layui.all.js"></script>
+		<script src="../vendors/vipspa-master/build/vipspa.js"></script>
+		<script src="../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+		<script src="../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+	
+		<script src="../dist/js/prolog.all-1.0.4.js"></script>
+	
+		<!--css-->
+	 
+		<link rel="stylesheet" href="../vendors/layui-master/dist/css/layui.rem.css" />
+		<link rel="stylesheet" href="../vendors/dhtmlx/grid/codebase/dhtmlxgrid.css" />
+		<link rel="stylesheet" href="../vendors/dhtmlx/grid/skins/web/dhtmlxgrid.css" />
+		<link rel="stylesheet" href="../vendors/dhtmlx/form/skins/web/dhtmlxform.css" />
+		<link rel="stylesheet" href="../dist/css/prolog.all-1.0.4.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+	
+
+		
+		<style type="text/css">
+			
+			#mywin{padding: 20px 10px 2px 20px;display:none;}
+			#mywin .cc{width: 100%;}
+			#mywin .b button{float:left;margin: 20px 10px;}
+		</style>
+
+	</head>
+	<body>
+		<div class="view" style="position:absolute;left:230px;top:50px;bottom:0px;right:0px;">
+			<div id="grid" style="height: 500px;width: 1200px;padding: 50px;"></div>
+			<div id="grid2" style="height: 500px;width: 1200px;padding: 50px;"></div>
+		
+			<div id="mywin">
+			<label>未分配角色</label>
+			<div id="g1" class="cc g">
+				&nbsp;
+			</div>
+			<div class="cc b">
+				<button class="layui-btn layui-btn-primary">
+				  <i class="layui-icon layui-icon-down"></i>
+				</button>
+				<button class="layui-btn layui-btn-primary">
+				  <i class="layui-icon layui-icon-up"></i>
+				</button>
+			</div>
+			<label style="clear:both;">已分配角色</label>
+			<div id="g2" class="cc g">
+			</div>
+		</div>
+		
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			
+				function aclick(id){
+					layer.open({
+					        type: 1 //此处以iframe举例
+					        ,title: '当你选择该窗体时，即会在最顶端'
+					        ,area: ['1000px', '600px']
+					        ,shade: 0
+					        ,maxmin: true
+					        ,content: $("#mywin")
+					        ,btn: ['完成', '全部关闭'] //只是为了演示
+					        ,btn1: function(){
+					        	layer.closeAll();
+						    	$("#g1").empty();
+						    	$("#g2").empty();
+					          	$("#mywin").hide();
+					        }
+					        ,btn2: function(){
+					        	$("#mywin").hide();
+						    	$("#g1").empty();
+						    	$("#g2").empty();
+					          	layer.closeAll();
+					        },cancel: function(){ 
+						    	//右上角关闭回调
+						    	$("#g1").empty();
+						    	$("#g2").empty();
+						    	$("#mywin").hide();
+						  	}
+					        ,zIndex: layer.zIndex //重点1
+					        ,success: function(layero){
+					        	var opts3 = {
+							   		skin:"terrace",
+							   		//renderer:"grid",
+							   		columns:[
+							   			{id:"id",name:"id",type:'txt',width:200,hidden:true},
+							   			{id:"platformId",name:"平台",type:'ro'},
+							   			{id:"createTime",name:"创建时间",type:'ro'}
+							   			],
+							   		multiselect:true,
+							   		url:"data.json",//数据接口
+							   		type:"get",//数据提交方式，默认为get
+									params:{},//查询提交参数，分页参数默认为pageNum,pageSize
+									page:true, //是否启用分页
+									totalCount:"totalCount" //总记录数字段，默认totalCount
+							　　	};
+			
+					        	$("#g1").empty();
+					        	var grid3 = $("#g1").initPlgGrid(opts3);	
+								grid3.loadData();
+								grid3.setColWidth(2,100);
+								
+								$("#g2").empty();
+								var grid4 = $("#g2").initPlgGrid(opts3);	
+								grid4.loadData();
+								grid4.setColWidth(2,100);
+					          	layer.setTop(layero); //重点2
+					        }
+					     });
+				}
+				
+				var opts = {
+			   		skin:"terrace",
+			   		//renderer:"grid",
+			   		columns:[
+			   			{id:"id",name:"id",type:'txt',width:"200",hidden:true},
+			   			{id:"platformId",name:"平台",type:'ro',width:"200",render:function(v){if(v=='test001') return '测试平台1';}},
+			   			{id:"enable",name:"是否可用",type:'ch',width:"200"},
+			   			{id:"createTime",name:"创建时间",type:'ro',width:"200",render:function(v,rd){return rd["id"];}},
+			   			{id:"creatorId",name:"创建人",type:'ro',width:"*",render:function(v,d){
+			   				return "<a href='javascript:void(0);' onclick='aclick(\""+d["id"]+"\")'>"+v+"</a>";
+			   			}}
+			   			],
+			   		multiselect:true,
+			   		toolbar:[
+			   			{text:"新增",cls:"layui-btn  layui-btn-xs",icon:"layui-icon layui-icon-add-1",click:function(){alert(this);}},
+			   			{text:"修改",cls:"layui-btn  layui-btn-xs",icon:"layui-icon layui-icon-edit",click:function(){alert(this);}},
+			   			{text:"删除",cls:"layui-btn  layui-btn-xs layui-btn-danger",icon:"layui-icon layui-icon-delete",click:function(){}},
+			   			{text:"详情",cls:"layui-btn  layui-btn-xs",icon:"layui-icon layui-icon-list",click:function(){}}
+			   		],
+			   		imagePath:"../../../../../../assets/PlgGrid/",
+			   		url:"data.json",//数据接口
+			   		type:"get",//数据提交方式，默认为get
+					params:{},//查询提交参数，分页参数默认为pageNum,pageSize
+					page:true, //是否启用分页
+					totalCount:"totalCount" //总记录数字段，默认totalCount
+			　　	};
+				//分页参数 pageSize pageNum
+				var grid = new PlgGrid(opts);	
+				grid.renderTo("grid");
+				grid.loadData();
+				
+				var opts2 = {
+			   		skin:"terrace",
+			   		//renderer:"grid",
+			   		columns:[
+			   			{id:"id",name:"id",type:'txt',width:200,hidden:true},
+			   			{id:"platformId",name:"平台",type:'ro'},
+			   			{id:"enable",name:"是否可用",type:'ch'},
+			   			{id:"createTime",name:"创建时间",type:'ro'},
+			   			{id:"creatorId",name:"创建人",type:'ro'}
+			   			],
+			   		filters:["#text_filter", "#select_filter","#numeric_filter","#text_filter","#text_filter"],
+			   		multiselect:true,
+			   		url:"data.json",//数据接口
+			   		type:"get",//数据提交方式，默认为get
+					params:{},//查询提交参数，分页参数默认为pageNum,pageSize
+					page:true, //是否启用分页
+					totalCount:"totalCount" //总记录数字段，默认totalCount
+			　　	};
+				var grid2 = $("#grid2").initPlgGrid(opts2);	
+      	grid2.loadData();
+      
+
+
+
+
+				//grid2.setColWidth(2,100);
+				//grid2.setColumnColor(["white","#000fes"])
+				//grid2.setColumnHidden(2,true);
+				
+				
+				
+			
+		</script>
+		
+	</body>
+</html>

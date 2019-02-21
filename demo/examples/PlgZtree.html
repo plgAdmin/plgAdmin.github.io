@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PlgZtree</title>
+    <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+    <link rel="stylesheet" href="../../dist/css/prolog.all-1.0.4.css" />
+
+    <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+    <script src="../../vendors/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="../../vendors/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+
+    <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+    <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+    <script src="../../dist/js/prolog.all-1.0.4.js"></script>
+
+    <!--引入第三方图标样式-->
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+
+</head>
+
+<body style="background: #e6e6e6; padding: 15px">
+    <div class="grid-container-full" style="height:100%" >
+        <div class="plg-flex">
+                <div class="layui-card plg-flex-item" style="flex: 0 0 auto;width: 300px">
+                        <div class="layui-card-header">组织管理</div>
+                          <div class="layui-card-body" id="meunTree" style="height: calc(100% - 42px);">
+                        </div>    
+                </div>
+                <div class="layui-card plg-flex-item">
+                        <div class="layui-card-header">详细信息</div>
+                </div>
+        </div>      
+    </div>
+
+<div id="meunTree">
+
+</div>
+</body>
+
+<script type="text/javascript">
+
+    var getData = function (opts) {
+        var close = Prolog.loading2();
+        var obj = {};
+        //配置tree
+        Prolog.syncAjax({
+            url: opts,
+            type: 'get',
+            success: function (res) {
+                if (res.success) {
+                    //只把父节点拿出来
+                    obj = res.data.filter(function (item) {
+                        if (item.parentMenuId == 0) {
+                            item.isParent = true
+                            return item
+                        }
+                    })
+
+                } else {
+                    layer.msg("数据加载失败!");
+                }
+                close()
+            }
+        });
+        return obj
+    }
+
+  var confing2 = {
+        isExpand: true, //是否初始化时展开第一个父节点的所有内容
+        renderer: "meunTree",
+        skin: "menu-tree",
+      //  initAjax:{url:"data2.json"},
+        setData: getData("./mockData/PlgZtree/data.json"), //url地址,
+        //  url: "data2.json",
+        //  delMenu: null,
+        toolBar2:{
+            isShow:true,
+            btn:[{
+                skin:"layui-btn-primary",
+                icon:"layui-icon layui-icon-delete",
+                text:"删除",
+                EventCallback:delTreeNodeClick
+            },
+            {   
+                skin:"layui-btn-normal",
+                icon:"layui-icon layui-icon-add-1",
+                text:"添加",
+                EventCallback:addTreeNodeClick
+            }
+        ]
+        },
+        setting: {
+            async: {
+                  enable: false,
+                    url:  "./mockData/PlgZtree/data.json",
+                    type: "get",
+                    contentType: "application/json",
+                    dataType:"text",
+                    autoParam:["id"],
+                    headers:{"Authorization":token}
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                key: {
+                    title: "name"
+                },
+                simpleData: {
+                    enable: true,
+                    idKey: "menuId",
+                    pIdKey: "parentMenuId",
+                    rootPId: "0",
+                    id: 'id',
+                }
+            },
+            callback: {
+                //单击事件的回调
+                onClick: function (event, treeId, treeNode) {
+         
+                },
+                //复选框的回调
+                onCheck: function (e, treeId, treeNode) {
+                      
+                },
+                
+                //展开时的回调
+                beforeExpand: function (treeId, treeNode) {
+                    var close = Prolog.loading2();
+                    var zTree = this.getZTreeObj(treeId);
+                    var obj
+                    var children = treeNode.children;
+                    if (!children) {
+                        Prolog.ajax({
+                            url: "./mockData/PlgZtree/data.json",
+                            type: 'get',
+                            success: function (res) {
+                                if (res.success) {
+                                    //只把父节点拿出来
+                                    //zTree.removeChildNodes(treeNode)                              
+                                    res.data.filter(function (item) {
+                                        if (item.parentMenuId == treeNode.menuId) {
+                                            if (treeNode)
+                                                return zTree.addNodes(treeNode, item);
+                                        }
+                                    });
+                                    children = treeNode.children;
+                                } else {
+                                    layer.msg("数据加载失败!");
+                                }
+                                close()
+                            },
+                            error: function () {
+                                close()
+                            }
+                        })
+
+                    } else {
+                        close()
+
+                    }
+
+                }
+            }
+        }
+    };
+ 
+    var tree2 = new PlgZtree(confing2);
+
+    console.log(tree2)
+    console.log(tree2.getZTreeObj("meunTree"))
+  
+
+
+    var nodeObj = {
+        id: Prolog.createRandomId(),
+        name: "新菜单",
+        systemId: null,
+        menuId: "m00" + Prolog.createRandomId(),
+        parentMenuId: 0,
+        level: 1,
+        enable: true,
+        leaf: false,
+        path: "",
+    };
+
+
+    //编辑菜单事件
+  
+
+
+    function addTreeNodeClick (event, zTree, treeNode) {
+        nodeObj.isParent = false;
+        if (!treeNode[0]) {
+            nodeObj.isParent = true;
+            nodeObj.parentMenuId = 0;
+        } else {
+            nodeObj.parentMenuId = treeNode.menuId;
+        }
+        var newTreeNode = zTree.addNodes(treeNode[0], nodeObj);
+        zTree.selectNode(newTreeNode[0]);
+    }
+
+    function delTreeNodeClick (event, zTree, treeNode) {
+        if (treeNode.length > 0) {
+            layer.confirm(`确认删除"${treeNode[0].name}"吗？`, function (index) {
+                layer.close(index)
+                zTree.removeNode(treeNode[0]);
+            });
+        } else {
+            layer.alert("请选择删除项")
+        }
+    }
+</script>
+
+
+</html>
