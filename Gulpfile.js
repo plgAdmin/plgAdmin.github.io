@@ -30,4 +30,10 @@ gulp.task('build', gulp.series(['del', 'less', 'minLess', 'images', 'javascript'
   
 }));
 
-
+// 更新用户线上的github上的demo
+gulp.task('updatedemo', (done) => {
+  console.log('updatedemo');
+  
+  done();
+  
+});
