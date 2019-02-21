@@ -5,7 +5,6 @@ https://plgadmin.github.io/
 ### demo
 [demo地址](./demo/index.html)
 
-
 ### Usaged
 - gulp4.x
 -  分为开始模式和build模式，主要是在开发模式下有server，和watch模式
@@ -36,3 +35,6 @@ https://plgadmin.github.io/
 ### 20190219问题点
 
 [完成]1. 部分example用例跑不通
+
+
+
