@@ -3,7 +3,7 @@ https://plgadmin.github.io/
 1. 主要适用于PlgUI项目的打包，做一个demo
 
 ### demo
-[demo地址](./demo/index.html)
+[demo地址](./updatedemo/demo/index.html)
 
 ### Usaged
 - gulp4.x
