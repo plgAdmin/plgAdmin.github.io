@@ -1,0 +1,63 @@
+{"code": "200",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "platformId": "平台一",
+        "enable": "y",
+        "createTime": "2019/2/25",
+        "creatorId": "krui1"
+      },
+      {
+        "id": 2,
+        "platformId": "平台二",
+        "enable": "y",
+        "createTime": "2019/2/20",
+        "creatorId": "krui2"
+      },
+      {
+        "id": 3,
+        "platformId": "平台三",
+        "enable": "y",
+        "createTime": "2019/2/21",
+        "creatorId": "krui3"
+      },
+      {
+        "id": 4,
+        "platformId": "平台四",
+        "enable": "y",
+        "createTime": "2019/2/22",
+        "creatorId": "krui4"
+      },
+      {
+        "id": 5,
+        "platformId": "平台五",
+        "enable": "n",
+        "createTime": "2019/2/23",
+        "creatorId": "krui5"
+      },
+      {
+        "id": 6,
+        "platformId": "平台六",
+        "enable": "y",
+        "createTime": "2019/2/24",
+        "creatorId": "krui6"
+      },
+      {
+        "id": 7,
+        "platformId": "平台七",
+        "enable": "n",
+        "createTime": "2019/2/19",
+        "creatorId": "krui7"
+      }
+    ], 
+  "totalCount": 19, 
+  "pageCount": 2, 
+  "pageNum": 1, 
+  "pageSize": 10, 
+  "startRow": 0, 
+  "endRow": 0
+},
+"message": "查询成功",
+"success": "true"
+}
