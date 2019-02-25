@@ -24,18 +24,26 @@ module.exports = {
     // jsCore: './src/javascripts/core.js',
     imagesPath: './src/images/**/*'
   },
-  distPath: './dist',
-  output: {
-    // cssName: `prolog.all.${timesrting}`,   // 这样生成的版本号不便于引用
+  baseName: {
     cssName: `prolog.all-${version}`,   // 这样生成的版本号不便于引用
     // minCssName: `prolog.min.${timesrting}`,   // 这样生成的版本号不便于引用
     minCssName: `prolog.min-${version}`,   // 这样生成的版本号不便于引用
-    // minCssName: `prolog.min`,   // 这样生成的版本号不便于引用
-    cssPath: './dist/css/',
-    // jsName: `prolog.all.${timesrting}`,
     jsName: `prolog.all-${version}`,
     // minJsName: `prolog.min.${timesrting}`,
-    minJsName: `prolog.min-${version}`,
+    minJsName: `prolog.min-${version}`
+  },
+  devDistPath: './devDist',   // 开发模式下的输出目录
+  devOutput: {
+    // minCssName: `prolog.min`,   // 这样生成的版本号不便于引用
+    cssPath: './devDist/css/',
+    // jsName: `prolog.all.${timesrting}`,
+    jsPath: './devDist/js/',
+    imagesPath: './devDist/images/'
+  },
+  distPath: './dist',
+  output: {
+    // minCssName: `prolog.min`,   // 这样生成的版本号不便于引用
+    cssPath: './dist/css/',
     // minJsName: `plg.min`,
     jsPath: './dist/js/',
     imagesPath: './dist/images/'

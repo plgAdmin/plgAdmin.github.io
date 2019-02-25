@@ -2,17 +2,11 @@
 const del = require('del');
 module.exports = (gulp, config, plugins) => {
   
-  gulp.task('del', (done) => {
+  gulp.task('delCss', (done) => {
     // console.log('currentDelTarget::' + config.currentDelTarget);
     // console.log('config.delPath.jsPath::' + [config.delPath[config.currentDelTarget]]);
+    return del([config.devOutput.cssPath], done);
     
-    if(config.env.isDev) {
-      return del([config.devDistPath], done);
-    }
-
-    if(config.env.isPro) {
-      return del([config.distPath], done);
-    }
   })
   
 }

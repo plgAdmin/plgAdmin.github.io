@@ -30,8 +30,8 @@ function updataPath(filePath = null){
 
   fs.writeFile(filePath, fileContent, (err) => {
     if(err) throw err;
-    console.log('文件写入成功!!!');
   })
+
 
 }
 

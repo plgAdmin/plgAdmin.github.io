@@ -14,7 +14,7 @@ function updataPath (filePath = null) {
 
   const currentFileDir = path.dirname(filePath);
 
-  let targetStr = /\.\.\/\.\.\/dist\//g;
+  let targetStr = /\.\.\/\.\.\/devDist\//g;
   let replaceStr = '../'.repeat( targetDirs.indexOf(currentFileDir) + 1);
 
   let fileContent = fs.readFileSync(filePath, "utf-8");

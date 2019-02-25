@@ -1,3 +1,4 @@
+// 生成压缩的min.less文件
 module.exports = (gulp, config, plugins) => {
 
   gulp.task('minLess', (done) => {
@@ -14,10 +15,12 @@ module.exports = (gulp, config, plugins) => {
     .pipe(plugins.autoprefixer(config.prefixerOptions))
     // .pipe(plugins.if(config.env.isPro, plugins.csso()))
     .pipe(plugins.csso())
-    .pipe(plugins.rename(config.output.minCssName + '.css'))
+    .pipe(plugins.rename(config.baseName.minCssName + '.css'))
     .pipe(plugins.if(config.env.isDev, plugins.sourcemaps.write('')))
     .pipe(plugins.size())
-    .pipe(gulp.dest(config.output.cssPath))
+    // .pipe(gulp.dest(config.output.cssPath))
+    .pipe(plugins.if(config.env.isDev, gulp.dest(config.devOutput.cssPath)))
+    .pipe(plugins.if(config.env.isPro, gulp.dest(config.output.cssPath)))
     .pipe(plugins.if(config.env.isDev, config.server.reload({
       stream: true
     })));

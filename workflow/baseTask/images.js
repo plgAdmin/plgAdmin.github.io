@@ -11,7 +11,9 @@ module.exports = (gulp, config, plugins) => {
         }
       }))
       .pipe(plugins.size()) // 最终的需求，此处可以优化
-      .pipe(gulp.dest(config.output.imagesPath))
+      // .pipe(gulp.dest(config.output.imagesPath))
+      .pipe(plugins.if(config.env.isDev, gulp.dest(config.devOutput.imagesPath)))
+      .pipe(plugins.if(config.env.isPro, gulp.dest(config.output.imagesPath)))
       .pipe(plugins.if(config.env.isDev, config.server.reload({
         stream: true
       })));

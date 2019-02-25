@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "node workflow/modifyVersion && cross-env NODE_ENV=development gulp",
     "build": "node workflow/modifyVersion && cross-env NODE_ENV=production gulp build && node workflow/getDistFileSize && node workflow/stats",
-    "updatedemo": "node workflow/modifyVersion && cross-env NODE_ENV=production gulp build && node workflow/getDistFileSize && node workflow/stats && node workflow/copyDist",
-    "zip": "node workflow/stats && node workflow/pack",
+    "zip": "node workflow/pack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

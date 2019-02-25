@@ -9,6 +9,7 @@
     }
 
     var PlgCard = function(options) {
+        
         if (!options || !options.renderer) return;
 
         /**
