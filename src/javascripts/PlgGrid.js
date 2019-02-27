@@ -164,13 +164,13 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 		
 		var plgGrid_default = {
 			title:'',
-	   		renderer:"",
-	   		columns:[],
-	   		multiselect:false,
-	   		url:"data.json",
-	   		type:"get",
-	   		pageNum:"pageNum",
-	   		pageSize:"pageSize",
+      renderer:"",
+      columns:[],
+      multiselect:false,
+      url:"data.json",
+      type:"get",
+      pageNum:"pageNum",
+      pageSize:"pageSize",
 			params:{pageSize:10,pageNum:1}, //字符串或json
 			contentType:"application/x-www-form-urlencoded",
 			page:true,
@@ -213,7 +213,8 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 		
 		var containerId;
 		var loadDataCallback;//加载完数据的回调，在loaddata或reload方法中设置
-		
+    
+    
 		function renderTo(id){
 			containerId = id;
 			$("#"+containerId).empty();
@@ -228,7 +229,12 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			createPanel();
 			$("#"+id).append(panel);
 			//创建表格
-			createGrid(gridId);
+      createGrid(gridId);
+      setDefaultsMethods();
+      console.log('mygrid>>>>>');
+      console.log(mygrid);
+      console.log('mygrid>>>>>');
+
 			//初始化表格
 			mygrid.init();      //finishes initialization and renders the grid on the page 
 			
@@ -574,7 +580,8 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 		function createGrid(id){
 			
 			mygrid = new dhtmlXGridObject(id);
-			
+      
+      
 			//mygrid.setSkin("web");
 			var imp = opts.imagePath==null?GridBasePath:opts.imagePath;
 			if(imp && imp.length>0){
@@ -822,8 +829,14 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			mygrid.clearAll();
 			loadData(data,callback);
 		}
-		
-		function parseData(da){
+    
+  /**
+   *将API返回的数据解析，将JSON字符串解析成Object
+   *
+   * @param {*} da
+   * @returns
+   */
+  function parseData(da){
 			
 			if(typeof da != "object")
 				da = JSON.parse(da);
@@ -845,7 +858,9 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			}else{
 				ldata = da.data.list;
 			}
-	    	rownum = (pageNum-1)*pageSize+1;
+        rownum = (pageNum-1)*pageSize+1;
+        
+
 	    	try{
 	    		mygrid.parse(converData(ldata),"json");
 	    		changePageBtnStatus();
@@ -929,8 +944,6 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			}
 		}
 		
-		
-		
 		this.getSelectedCellIndex = function(){
 			return mygrid.getSelectedCellIndex();
 		}
@@ -1012,11 +1025,12 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 		}
 		
 		this.setColumnHidden = function(colIndex,isHidden){
+      
 			mygrid.setColumnHidden(colIndex,isHidden);
 		}
 		
 		this.setRowHidden = function(rowId,isHidden){
-			mygrid.setRowHidden(colIndex,isHidden);
+			mygrid.setRowHidden(rowId,isHidden);
 		}
 		this.selectRowById = function(rowId){
 			mygrid.selectRowById(rowId);
@@ -1078,8 +1092,21 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 		}
 		
 		this.showLoading = showLoading;
-		this.closeLoading = closeLoading;
-		
+    this.closeLoading = closeLoading;
+    
+    var self = this;
+    function setDefaultsMethods() {
+      for(var key in mygrid){
+        
+        if(key.indexOf('_') === -1 && typeof mygrid[key] === 'function'){
+          
+          if(!self[key]){
+            self[key] = mygrid[key];
+          }
+        }
+
+      }
+    }
 		
 		var colsSettinIndex;
 		function showColsSettingDialog(selector){

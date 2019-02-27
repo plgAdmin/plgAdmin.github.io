@@ -18,7 +18,7 @@ require('./workflow/baseTask/minJavascript')(gulp, config, plugins);
 require('./workflow/baseTask/demo')(gulp, config, plugins);
 require('./workflow/baseTask/vendors')(gulp, config, plugins);
 require('./workflow/baseTask/getDistFileSize')(gulp, config, plugins);
-require('./workflow/baseTask/cover')(gulp, config, plugins);
+// require('./workflow/baseTask/cover')(gulp, config, plugins);
 require('./workflow/baseTask/server')(gulp, config, plugins);
 
 /**
@@ -38,11 +38,3 @@ gulp.task('build', gulp.series(['del', 'less', 'minLess', 'images', 'javascript'
   done();
   
 }));
-
-// 更新用户线上的github上的demo
-gulp.task('updatedemo', (done) => {
-  console.log('updatedemo');
-  
-  done();
-  
-});

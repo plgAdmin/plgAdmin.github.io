@@ -38,8 +38,8 @@
 </head>
 
 <body>
-  <div class="view" style="position:absolute;left:30px;top:50px;bottom:0px;right:0px;">
-    <div id="grid" style="height: 500px;width: 1200px;padding: 50px;"></div>
+  <div class="view" style="position:absolute;left:0px;top:0px;bottom:0px;right:0px;">
+    <div id="grid" style="height: 500px;width: 1200px; padding: 10px;"></div>
     <div id="grid2" style="height: 500px;width: 1200px;padding: 50px;"></div>
 
     <div id="mywin">
@@ -225,8 +225,151 @@
     //分页参数 pageSize pageNum
     var grid = new PlgGrid(opts);
     grid.renderTo("grid");
+    console.log('首次开始加载数据');
     grid.loadData();
+    console.log('首次结束加载数据');
 
+    console.log('第二次开始加载数据');
+    console.log(grid);
+    console.log('第二次结束加载数据');
+
+    console.log('getElement()');
+    console.log(grid.getElement());
+    console.log('getElement()');
+
+    console.log('getElement()');
+    console.log(grid.getGrid());
+    console.log('getElement()');
+
+    console.log('grid.getParams()');
+    console.log(grid.getParams());
+    console.log('grid.getParams()');
+
+    console.log('gird.setParams()');
+    grid.setParams({
+      name: 'plg',
+      age: 8
+    });
+    console.log(grid.getParams());
+    console.log('gird.setParams()');
+
+    // XXX
+    console.log('c');
+    console.log(grid.getCheckedIds());
+    console.log('getCheckedIds');
+    
+    // XXX
+    console.log('getSelectedRowId');
+    console.log(grid.getSelectedRowId());
+    console.log('getSelectedRowId');
+
+    // XXX
+    console.log('getSelectedRowData');
+    console.log(grid.getSelectedRowData('id'));
+    console.log('getSelectedRowData');
+
+    // XXX
+    console.log('getRowData');
+    console.log(grid.getRowData(3));
+    console.log('getRowData');
+
+    // XXX  很有可能是监听select列的事件
+    console.log('getSelectedCellIndex');
+    console.log(grid.getSelectedCellIndex());
+    console.log('getSelectedCellIndex');
+    
+    // undefined
+    console.log('getRowId');
+    console.log(grid.getRowId(1));
+    console.log('getRowId');
+
+    // -1 
+    console.log('getRowIndex');
+    console.log(grid.getRowIndex(4));
+    console.log('getRowIndex');
+
+    // error
+    // console.log('getCellObject');
+    // console.log(grid.getCellObject(2, 1));
+    // console.log('getCellObject');
+    
+    // error
+    // console.log('getCellValue');
+    // console.log(grid.getCellValue(2, 0));
+    // console.log('getCellValue');
+
+     // error
+    // console.log('getCellObject2');
+    // console.log(grid.getCellObject2(2, 1));
+    // console.log('getCellObject2');
+    
+    // error
+    // console.log('getCellValue2');
+    // console.log(grid.getCellValue2(2, 1));
+    // console.log('getCellValue2');  
+    
+    // console.log('setCellValue');
+    // console.log(grid.setCellValue(2, 2, 'krui'));
+    // console.log('setCellValue');
+
+    console.log('addRow');
+    // 此方法添加的数据是只是在显示层面会有变动，刷新之后就会消失，另外在插入的数据永远显示在首行,
+    // 在页面初始化中的render设置，对新增的数据无效
+    console.log(grid.addRow(3, {
+      "id": 10,
+      "platformId": "平台十",
+      "enable": "y",
+      "createTime": "2019/2/20",
+      "creatorId": "krui2"
+    }));
+    console.log('addRow');
+
+    // 是一个对象
+    console.log('getColumnsNum');
+    console.log(grid.getColumnsNum());// 
+    console.log('getColumnsNum');
+
+    // 是一个对象
+    console.log('getGridForm');
+    console.log(grid.getGridForm());
+    console.log('getGridForm');
+
+    // 是一个对象
+    console.log('getToolBarForm');
+    console.log(grid.getToolBarForm());
+    console.log('getToolBarForm');
+
+    // 没有看到效果
+    console.log('setColWidth');
+    grid.setColWidth(2, 500);
+    console.log('setColWidth');
+
+    // 设置列的颜色额  --没有看到效果
+    console.log('grid.setColumnColor');
+    console.log(grid.setColumnColor('red'));
+    console.log('grid.setColumnColor');
+
+    // 设置列隐藏  --没有看到效果
+    console.log('setColumnHidden>>>');
+    console.log(grid.setColumnHidden(2, true));
+    console.log('setColumnHidden>>>');
+
+    // 设置行隐藏  --没有看到效果
+    console.log('setRowHidden');
+    console.log(grid.setRowHidden(1));
+    console.log('setRowHidden');
+    
+    // 设置行隐藏  --没有看到效果 undefined
+    console.log('selectRowById');
+    console.log(grid.selectRowById(1));
+    console.log('selectRowById');
+
+
+    // this.showLoading  没有看到效果
+    grid.showLoading();
+    grid.closeLoading();
+    		
+    
     var opts2 = {
       skin: "terrace",
       //renderer:"grid",
@@ -267,8 +410,8 @@
       page: true, //是否启用分页
       totalCount: "totalCount" //总记录数字段，默认totalCount
     };
-    var grid2 = $("#grid2").initPlgGrid(opts2);
-    grid2.loadData();
+    // var grid2 = $("#grid2").initPlgGrid(opts2);
+    // grid2.loadData();
 
     //grid2.setColWidth(2,100);
     //grid2.setColumnColor(["white","#000fes"])
