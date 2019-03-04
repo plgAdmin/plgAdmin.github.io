@@ -18,56 +18,136 @@
 
 </head>
 
-<body style="background: #fff">
+<body style="background: #fff;padding:30px">
 
-  <div id="app"></div>
-
-  <div id="app2"></div>
-  <div id="app3">
-
-    <input type="text" class="layui-input" id="text">
-    <div class="layui-form">
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <input type="text2 " class="layui-input ta" id="text3">
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>常规用法</legend>
+  </fieldset>
+  <div class="layui-form">
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">中文版</label>
+        <div class="layui-input-inline">
+          <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
         </div>
-        <div class="layui-inline">
-
-          <input type="text2 " class="layui-input " id="text2">
+      </div>
+      <div class="layui-inline">
+        <label class="layui-form-label">国际版</label>
+        <div class="layui-input-inline">
+          <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
         </div>
       </div>
     </div>
+  </div>
 
-    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>同时绑定多个</legend>
+  </fieldset>
+   
+  <div class="layui-form">
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+      </div>
+      <div class="layui-inline">
+        <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+      </div>
+      <div class="layui-inline">
+        <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+      </div>
+    </div>
+  </div>
 
-    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
 
-    <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+            
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>其它选择器</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">年选择器</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="test2" placeholder="yyyy">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <label class="layui-form-label">年月选择器</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="test3" placeholder="yyyy-MM">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <label class="layui-form-label">时间选择器</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="test4" placeholder="HH:mm:ss">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <label class="layui-form-label">日期时间选择器</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
     <script type="text/javascript">
-      var date = plgDate.render({
-        elem: "#text"
-      })
 
-      //console.log(date)
 
-      var config = {
-        value: new Date(),
-        type: 'month'
+ //常规用法
+ plgDate.render({
+    elem: '#test1'
+  });
+  
+  //国际版
+  plgDate.render({
+    elem: '#test1-1'
+    ,lang: 'en'
+  });
 
-      }
-      //如果绑定多个 是多个相同元素
-      // $(element).each(function () {
 
-      //   plgDate.render({
-      //     elem: this
-      //   });
-      // })
+   //同时绑定多个
+   $('.test-item').each(function(){
+    plgDate.render({
+      elem: this
+      ,trigger: 'click'
+    });
+  });
+  
 
-      var date2 = $('.test-item').plgDateRender(config)
-
-      //console.log(date2)
+  
+  //年选择器
+  plgDate.render({
+    elem: '#test2'
+    ,type: 'year'
+  });
+  
+  //年月选择器
+  plgDate.render({
+    elem: '#test3'
+    ,type: 'month'
+  });
+  
+  //时间选择器
+  plgDate.render({
+    elem: '#test4'
+    ,type: 'time'
+  });
+  
+  //日期时间选择器
+  plgDate.render({
+    elem: '#test5'
+    ,type: 'datetime'
+  });
+      
+  
     </script>
 
 </body>
