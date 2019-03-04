@@ -1,0 +1,193 @@
+<div class="plg-sidebar">
+
+    <div class="main-nav">
+        <div id="meunSoroll" class="layui-side-scroll">
+
+            <div class="plg-logo">
+                <a class="logo-path false"></a>
+
+                <i id="plg-logo-fold" class="anticon layui-icon layui-icon-shrink-right"></i>
+
+            </div>
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <div class="pr-open" data-type="hoot-click">
+                <div class="layui-layer-setwin">
+                    <a class="layui-icon layui-icon-close" href="javascript:;"></a>
+                </div>
+                <div class="pr-search">
+                    <span class="pr-icon-search-wrapper"><i class="layui-icon layui-icon-search
+"></i></span>
+
+                    <input type="text" id="selectInput" class="pr-search-input" placeholder="请输入关键词">
+
+                    <div class="search-tip">
+                        <p><span>以下是与“<strong></strong>”相关的产品：</span></p>
+                    </div>
+
+                </div>
+                <div class="pr-left">
+                    <div id="keyUpList" class="keyUpList"></div>
+                    <div class="pr-meungroup-list">
+                        <div class="pr-meun-group">
+                            <div class="list-item" id="m-home"><a href="data/dom_home" menu-id="m-home" parentmenuid="0"
+                                    class="list-title">首页</a></div>
+                        </div>
+                        <div class="pr-meun-group">
+                            <div class="list-item" id="dom-1"><a href="javascript:;" menu-id="dom-1" parentmenuid="0"
+                                    class="list-title active">一级</a>
+                                <div class="menu-text">
+                                    <a href="javascript:;" menu-id="dom-2" parentmenuid="dom-1" leaf="false" style="display: none;">
+                                        二级
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="data/dom1" menu-id="dom-3" parentmenuid="dom-2" leaf="true">
+                                        三级
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="javascript:;" menu-id="dom-4" parentmenuid="dom-1" leaf="false" style="display: none;">
+                                        二级-2
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="data/dom2" menu-id="dom-5" parentmenuid="dom-4" leaf="true">
+                                        三级-2
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pr-meun-group">
+                            <div class="list-item" id="dom-6"><a href="javascript:;" menu-id="dom-6" parentmenuid="0"
+                                    class="list-title">菜单二</a>
+                                <div class="menu-text">
+                                    <a href="javascript:;" menu-id="dom-7" parentmenuid="dom-6" leaf="false" style="display: none;">
+                                        菜单二-二级-1
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="data/dom4" menu-id="dom-8" parentmenuid="dom-7" leaf="true">
+                                        菜单二-三级-1
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="javascript:;" menu-id="dom-9" parentmenuid="dom-6" leaf="false" style="display: none;">
+                                        菜单二-二级-2
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="data/dom4" menu-id="dom-10" parentmenuid="dom-9" leaf="true">
+                                        菜单二-三级-2
+                                    </a>
+                                </div>
+                                <div class="menu-text">
+                                    <a href="data/dom5" menu-id="dom-11" parentmenuid="dom-6" leaf="true">
+                                        菜单二-3
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-right">
+                    <div class="scroll-nav">
+                        <ul class="right-sidebar">
+                            <li class="s-item" id="undefined" menu-id="m-home">
+                                <span class="icon-box">
+                                    <i class="icon iconfont p-icon-home"></i>
+                                </span>
+                                <span class="meun-name"><a href="data/dom_home">首页</a></span>
+                            </li>
+
+
+                            <li class="s-item active" id="undefined" menu-id="dom-1">
+                                <span class="icon-box">
+                                    <i class="icon iconfont p-icon-jichu"></i>
+                                </span>
+                                <span class="meun-name"><a href="javascript:;">一级</a></span>
+                            </li>
+
+
+                            <li class="s-item" id="undefined" menu-id="dom-6">
+                                <span class="icon-box">
+                                    <i class="icon iconfont p-icon-jichu"></i>
+                                </span>
+                                <span class="meun-name"><a href="javascript:;">菜单二</a></span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="product-all" data-type="hoot-click">
+                <span class="icon-box">
+                    <i class="icon iconfont p-icon-all"></i>
+                </span>
+                <span class="meun-name">
+                    <a class="" href="javascript:;">所有服务</a>
+                    <i class="right-mover layui-icon layui-icon-right
+"></i>
+                </span>
+            </div>
+            <div class="nav-last" data-type="hoot-click" data-show="">
+                <ul id="sidebar" class="sidebar">
+
+                    <li class="s-item" id="undefined" menu-id="m-home">
+                        <span class="icon-box">
+                            <i class="icon iconfont p-icon-home"></i>
+                        </span>
+                        <span class="meun-name"><a href="data/dom_home">首页</a></span>
+                    </li>
+
+
+                    <li class="s-item active" id="undefined" menu-id="dom-1">
+                        <span class="icon-box">
+                            <i class="icon iconfont p-icon-jichu"></i>
+                        </span>
+                        <span class="meun-name"><a href="javascript:;">一级</a></span>
+                    </li>
+
+
+                    <li class="s-item" id="undefined" menu-id="dom-6">
+                        <span class="icon-box">
+                            <i class="icon iconfont p-icon-jichu"></i>
+                        </span>
+                        <span class="meun-name"><a href="javascript:;">菜单二</a></span>
+                    </li>
+
+
+                </ul>
+                <div class="nav-hover-child">
+                    <!-- 二级菜单 -->
+                    <div class="layui-side">
+                        <!--<div class="nav-title"></div>-->
+                        <ul class="body-nav" lay-filter="test">
+                            <li class="item h-link"><a href="javascript:;" menu-id="dom-2" leaf="false" level="2"
+                                    parentmenuid="dom-1">二级<i class="right-mover layui-icon layui-icon-right"></i></a>
+                                <dl class="nav-child" style="display:none">
+                                    <dd class=""><a href="data/dom1" leaf="true" main-id="dom-1" parentmenuid="dom-2"
+                                            menu-id="dom-3">三级</a></dd>
+                                </dl>
+                            </li>
+                            <li class="item h-link"><a href="javascript:;" menu-id="dom-4" leaf="false" level="2"
+                                    parentmenuid="dom-1">二级-2<i class="right-mover layui-icon layui-icon-right"></i></a>
+                                <dl class="nav-child" style="display:none">
+                                    <dd class=""><a href="data/dom2" leaf="true" main-id="dom-1" parentmenuid="dom-4"
+                                            menu-id="dom-5">三级-2</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+

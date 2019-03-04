@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>PlgSelectTags标签</title>
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+</head>
+
+<body>
+  <form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item">
+      <label class="layui-form-label plg-inputTags">多选下拉框</label>
+      <div class="layui-input-block" id="test" lay-filter="test">
+
+      </div>
+
+
+    </div>
+  </form>
+
+  <script>
+    // 多选
+    var config = {
+      renderer: 'test',
+      data: [{
+        name: "vue",
+        id: 1,
+        text: "hello vue"
+      }, {
+        name: "layui",
+        id: 2,
+        text: "hello layui"
+      }, {
+        name: "react",
+        id: 3,
+        text: "hello react"
+      }, {
+        name: "bootstrap",
+        id: 4,
+        text: "hello bootstrap"
+      }, {
+        name: "element",
+        id: 5,
+        text: "hello element"
+      }],
+      valueName: "name", // 选中的值的key
+      values: ['bootstrap', 'element'] // 默认选中的值
+    };
+
+    var selectPlusTags = new PlgSelectPlusTags(config);
+    // console.log(test.getChecked());
+  </script>
+</body>
+
+</html>
