@@ -37,8 +37,11 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
 input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
 label,input{vertical-align: middle;}
-.cl:after{content: "";display: block;clear: both}
-.cl:before{content: "";display: table}
+.cl{
+  &:after{content: "";display: block;clear: both}
+  &:before{content: "";display: table}
+}
+
 i,em{
   font-style: normal;
 }

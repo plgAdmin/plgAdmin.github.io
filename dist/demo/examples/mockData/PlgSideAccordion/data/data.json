@@ -184,6 +184,34 @@
       "imagePath": "icon iconfont p-icon-jichu",
       "leaf": true
     } 
+    , {
+      "menuId": "dom-13",
+      "name": "PlgFrom表单",
+      "systemId": "oms",
+      "parentMenuId": "0",
+      "type": 0,
+      "level": 1,
+      "iframe": false,
+      "path": "",
+      "enable": true,
+      "operateType": 0,
+      "imagePath": "icon iconfont p-icon-jichu",
+      "leaf": false
+    } 
+    , {
+      "menuId": "dom-14",
+      "name": "row-栅格",
+      "systemId": "oms",
+      "parentMenuId": "dom-13",
+      "type": 0,
+      "level": 2,
+      "iframe": false,
+      "path": "mockData/PlgSideAccordion/data/form/row",
+      "enable": true,
+      "operateType": 0,
+      "imagePath": "",
+      "leaf": true
+    } 
 
 
   ]

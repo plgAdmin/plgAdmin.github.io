@@ -58,6 +58,10 @@
         return this.replace(/(^\s*)|(\s*$)/g, "");
     }
 
+    String.prototype.replaceAll = function(a,b){
+        var reg = new RegExp(a,"g");//g,表示全部替换。
+        return this.replace(reg,b);
+    }
 
     var pinyin = {};
     pinyin.makePy = makePy;

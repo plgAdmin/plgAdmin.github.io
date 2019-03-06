@@ -1,0 +1,146 @@
+.row_dhxform_item_label_left {
+ //background: #ff6600;
+ display: block;
+ clear: both;
+  .dhxform_base{
+    padding: 0;
+  }
+  .dhxform_block{
+    [class*="dhxform_item_label_"]{
+     // display: inline-block;
+    //  vertical-align:middle;
+      padding-top: 0;
+      
+    }
+  }
+  .layui-row{
+
+    div.dhxform_control.dhxform_img_node{
+
+
+      div.dhxform_img,div.dhxform_actv_c,div.dhxform_actv_r{
+        left: 0;
+        top: 7px;
+  
+      }  
+  
+    }
+    &>[class*="dhxform_item_label_right"]{
+      justify-content: flex-end;
+    } 
+    &>[class*="dhxform_item_label_center"]{
+      justify-content: center;
+    }
+    &>[class*="dhxform_item_label_"]{
+      clear:none ;
+      padding-top: 0;
+      min-height: 40px;
+      flex-wrap: wrap;
+      align-items: center;
+      display: flex;
+      &.right{
+        justify-content: flex-end;
+      } 
+      &.center{
+        justify-content: center;
+      }
+      &>.dhxform_label{
+        position: relative;
+        clear: none;
+        padding-top: .0;
+        float: none;
+      }
+      &>.dhxform_control {
+        position: relative;
+        float: none;
+        margin-right: 2px;
+          &>span{
+            width: 100%;
+            &>.dhxcombo_dhx_web{
+              width: 100% }
+          }
+        .plg-input{
+          width:100%;
+        
+        }
+
+      
+      }
+    } 
+   
+    
+    .dhxform_item_label_left{
+      &>.dhxform_label{
+        flex: 0 0 auto;     
+      }
+      &>.dhxform_control {
+        flex: 1 1 auto; 
+      }
+    }
+    .dhxform_item_label_right{
+      &>.dhxform_label{
+        flex: 1 1 auto; 
+      }
+      &>.dhxform_control {
+        flex: 0 0 auto;
+      } 
+    }
+  }
+  .dhxform_label label{
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .dhxform_base .dhxform_control{
+    margin-right: 2px;
+  }
+  
+
+}
+.dhxform_obj_dhx_web {
+  .cl();
+  .dhxform_select,div.dhxform_btn{
+    cursor: pointer;
+  }
+  .dhxform_item_required{
+    font-family: serif,sans-serif;
+  }
+  div.dhxform_btn:focus {
+    outline: 0;
+  }
+  div.dhxform_control{
+    .dhxform_textarea{
+
+    } 
+
+  }
+
+
+  div.dhxform_control.dhxform_img_node{
+
+
+    .dhxform_textarea{
+   //   display: none
+    };
+    div.dhxform_img,div.dhxform_actv_c,div.dhxform_actv_r{
+      left: 0;
+      top: 5px;
+
+    }  
+
+  }
+
+  div.dhxform_item_label_right{
+    div.dhxform_label {
+     padding: 4px 0 0 0;
+    }
+    div.dhxform_control.dhxform_img_node{
+      margin-right: 6px;
+
+    }
+
+  } 
+
+ 
+  
+}
+

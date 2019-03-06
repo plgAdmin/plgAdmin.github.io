@@ -1,0 +1,190 @@
+<div id="logList" class="plg-tab-container">
+	<div id="log" class="grid-container-full"></div>
+</div>
+<style type="text/css">
+  .layui-form-label{width:210px;}
+  .layui-input{width:66%;}
+  .plg-btn-height-auto {height: auto!important;}
+  div.dhxcombo_dhx_web{height: 32px;}
+</style>
+
+<script type="text/javascript">
+  (function(){
+    var form=$("#logList #form1");
+    var grid1;
+    var grid2;
+  
+    var LOG_LEVEL = {
+      'INFO': {
+        text: 'INFO',
+        className: 'plg-log-info'
+      },
+      'DEBUG': {
+        text: 'DEBUG',
+        className: 'plg-log-debug'
+      },
+      'WARN': {
+        text: 'WARN',
+        className: 'plg-log-warn'
+      },
+      'ERROR': {
+        text: 'ERROR',
+        className: 'plg-log-error'
+      }
+    };
+    
+
+  var toolbsrlist= [{
+  
+  type: "row",
+  name: "layout",
+  //className:"PlgPanel skin_1 mt_10",
+
+  list: [
+    {
+      type:"row",
+      className:"layui-col-md10",
+      blockOffset :0,
+      list:[
+          {type:"settings",labelAlign :"right",labelWidth :100},
+          {type: "combo", name: "myCombo2", label: "Select Location",      className:"layui-col-md4",     options:[
+        {value: "1", text: "Open Air"},
+        {value: "2", text: "Private Party"}
+    ]},
+          {   
+            className:"layui-col-md4",    
+            type: "input",
+            name: 'username1',
+            label: '用户名2:',
+            placeholder: '请输入用户名'
+           },
+            {
+              className:"layui-col-md4",
+              type: "input",
+              name: "nickname2",
+              label: "昵称2:",
+              placeholder: '请输入昵称',    
+            }
+      ]
+    },
+    {
+      type:"block",
+      className:"layui-col-md2 right",
+      blockOffset :0,
+      list:[
+      {type:"button", name:"searchBtn", className:"", value:"查询"},
+      {type: "newcolumn"},
+      {type:"button", name:"all", value:"重置"},
+      {type: "newcolumn"},
+      {type:"button", name:"more2", value:"展开",className:"link toggle"}
+      ]
+    },
+    {
+      type:"row",
+      className:" layui-col-md10",     
+      name:"fol",
+      hidden:true,
+      blockOffset :0,
+      list:[
+            {type:"settings",labelAlign :"right",labelWidth :100},
+            {type:"input", className:"layui-col-md4",name:"description", label:"日志描述:"},
+            {type:"input", className:"layui-col-md4",name:"uri", label:"接口地址:"},
+            {type:"input", className:"layui-col-md4",name:"userName", label:"操作人:"},
+            {type:"calendar", className:"layui-col-md4",name:"startTime", label:"开始时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"},
+              {type:"calendar", className:"layui-col-md4",name:"endTime", label:"结束时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"}
+
+      ]
+    }
+
+  ]
+}];
+    var opts = {
+         skin:"terrace",
+         columns:[
+        {id:"id",name:"id",type:'txt',width:100,hidden:true},
+        {id:"createTime",name:"记录时间",type:'ro',width:150},
+        {id:"level",name:"日志级别",type:'ro',width:120,render: function(v,record){
+          return `<span class="${LOG_LEVEL[v].className}"> ${LOG_LEVEL[v].text} </span>`;
+        }},
+            {id:"description",name:"日志描述",type:'ro',width:200},
+        {id:"errorMessage",name:"日志信息",type:'ro',width:"*"},
+        {id:"uri",name:"接口地址",type:'ro',width:260, hidden:true},
+        {id:"className",name:"类名",type:'ro',width:150,hidden:true},
+        {id:"method",name:"方法名",type:'ro',width:120,hidden:true},
+        {id:"params",name:"参数",type:'ro',width:150, hidden:true},
+        {id:"userName",name:"操作人",type:'ro',width:150,hidden:true},
+        {id:"ip",name:"ip地址",type:'ro',width:120,hidden:true},
+        {id:"systemId",name:"系统id",type:'ro',width:150}
+  //			{id:"op",name:"操作",type:'button',width:"*",render:function(){
+  // 				return "修改^logList_update,删除^logList_del";
+  // 			}}
+      ],
+        toolbar:toolbsrlist,
+     
+  //		pagebar:{
+  //			buttons:[{text:"<i class='layui-icon layui-icon-delete '></i>删除",className:"layui-btn-danger plg-btn-height-auto",name:"delete"}]
+  //		},
+         url:"/japi/service-log/log/getLogList",//数据接口
+         type:"get",//数据提交方式，默认为get
+      params:{pageNum:1,pageSize:10,systemId:"",name:""},//查询提交参数，分页参数默认为pageNum,pageSize
+      page:true, //是否启用分页
+      multiselect:false,//是否支持多选
+      imagePath:"../../prologui/assets/PlgGrid/",
+      totalCount:"totalCount" //总记录数字段，默认totalCount
+  　　	};
+    var log = new PlgGrid(opts);	
+    log.renderTo("log");
+  //	log.loadData();
+  
+    PlgDialog.msg("请先选择系统id");
+    
+    log.attachToolBarEvent("onButtonClick", function(name){
+      if(name=="searchBtn"){
+        var fdata = log.getToolBarForm().getFormData();
+        log.setParams(fdata);
+        log.reload();
+      }
+      if(name=="all"){
+        log.getToolBarForm().clear();
+        log.setParams({});
+        log.reload();
+      }
+    });
+    
+  //	log.attachPageBarEvent(function(name,ids){
+  //		if(name=="delete"){
+  //			if(ids==""){
+  //				return;
+  //			}
+  //			PlgDialog.confirm('确定删除？', {
+  //	        title:'删除提示',
+  //	        btnAlign:'c',
+  //	        btn: ['确定', '取消'] //可以无限个按钮
+  //	    	}, function(index, layero){
+  //		        $.ajax({ 
+  //					url: '/japi/service-log/log/del', 
+  //					type: 'post', 
+  //					data:{id:ids},
+  //					success:function (data) {
+  //						PlgDialog.close(index);
+  //					    log.reload();
+  //					    PlgDialog.msg(data.message);
+  //					}
+  //				});
+  //	    	});
+  //		}
+  //	});
+    
+    var f = log.getToolBarForm();
+    f.loadComboData("systemId",{url:'/japi/service-users/sys/getSelectSystem/v1.0',data:{},valueField:"val",textField:"val",method:"get"});
+    f.attachComboEvent("systemId","onChange",function(value,text){
+      log.setParams(f.getFormData());
+      log.reload();
+    });
+    
+  })()
+  
+  
+    
+  </script>
+  

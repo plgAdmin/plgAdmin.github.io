@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgForm</title>
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../vendors/dhtmlx/grid/skins/web/dhtmlxgrid.css" />
+  <link rel="stylesheet" href="../../devDist/css/prolog.all-0.0.1.css" /> 
+
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+    <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+    <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+    <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+    <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+    <script src="../../devDist/js/prolog.all-0.0.1.js"></script>
+  <style type="text/css">
+    #form1 {
+      margin: 50px;
+    }
+  </style>
+
+</head>
+
+<body style="background: #fff">
+
+  <div id="logList" class="plg-tab-container">
+
+    <div class="grid-container-full">
+          <div class="plg-grid-panel">
+              <fieldset class="layui-elem-field layui-field-title site-title">
+                  <legend><a name="quickstart">基本栅格使用</a></legend>
+                </fieldset>
+              <div id="log"></div>
+
+                <fieldset class="layui-elem-field layui-field-title site-title">
+                    <legend><a name="quickstart">toolbar嵌套栅格</a></legend>
+                  </fieldset>    
+              <div id="dome_log"></div>
+              
+              <fieldset class="layui-elem-field layui-field-title site-title">
+                  <legend><a name="quickstart">Block嵌套使用栅格</a></legend>
+                </fieldset>     
+                <div id="block_row"></div>
+<div id="block"></div>
+<div class="cl"></div>
+<button id="testClear">clear</button>
+<pre class="layui-code" lay-title="" lay-height="" lay-skin="" lay-encode="true">
+删格布局基本配置
+{
+type:"row",
+label:string,
+className:string, 
+name:string,
+style:string,
+width:number,  * 默认100%
+hidden:false,  
+list:[
+  配置单元格大小分布;
+  "className"属性控制12列分布值 layui-col-md1 , layui-col-md2 , layui-col-md3 , ...layui-col-md12;
+  例：
+  {   
+    className:"layui-col-md4",//占“row” 4/12
+    type: "input",
+    required :true,
+    name: 'username1',
+    label: '用户名:',
+    placeholder: '请输入用户名',
+  },
+  ... 
+]
+}
+</pre>
+          </div>
+    </div>
+
+</div>
+
+  
+<script type="text/javascript">
+  (function(){
+    //代码块
+    layui.code({
+      about:false,
+    elem: 'pre' ,//默认值为.layui-code
+    title: '',
+    //skin: 'notepad' //如果要默认风格，不用设定该key。
+  });
+
+  
+    
+    
+    var rowsConfig = {
+        renderer: "log",      
+        items: [{
+          type: "row",
+          name: "layout",
+          list: [
+            { 
+              type:"settings",
+              labelAlign :"right",
+              labelWidth :100,
+            },
+           {   
+              className:"layui-col-md4",
+              required :true, 
+              type: "input",
+              name: 'username1',
+              label: '用户名2:',
+              placeholder: '请输入用户名',
+            },
+            {
+              className:"layui-col-md4",
+              type:"select", 
+              name:"level", 
+              label:"日志级别:", 
+              options:[	
+                   {value: "INFO", text: "INFO"},
+                  {value: "DEBUG", text: "DEBUG"},
+                  {value: "WARN", text: "WARN"},
+                  {value: "ERROR", text: "ERROR"}
+             ]},
+            {
+  
+              className:"layui-col-md4",
+              type: "input",
+              name: "nickname2",
+              label: "昵称2:",
+              placeholder: '请输入昵称',
+          
+            },
+            {
+              className:"layui-col-md4",
+              type: "input",
+              name: "nickname3",
+              label: "昵称3:",
+              placeholder: '请输入昵称',  
+            },
+            {
+              type:"block",
+              className:"layui-col-md8 right",
+              blockOffset :0,
+             list:[
+             {
+              labelAlign :"right",
+              labelWidth :50,
+              type: "input",
+              name: "nickname3",
+              label: "昵称3:",
+              placeholder: '请输入昵称',
+              },
+              {type:"newcolumn"},
+             {
+              value:"按扭1",
+              type: "button",
+              name: "nickname3"    
+            },
+            {type:"newcolumn"},
+            { 
+              type: "button",
+              name: "nickname4",
+              value:"按扭2",
+            },
+            {type: "newcolumn"},
+            {type: "checkbox", name: "ch",   labelWidth :"auto", labelAlign :"left", position: "label-right",label: "用户", checked: true},
+            {type: "newcolumn"},
+            {type: "radio", name: "n1",  labelWidth :"auto",  labelAlign :"left",position: "label-right", value: 2, label: "客户"}
+          
+          ]
+             }        
+          ]
+        }]
+      }
+      var rows = new PlgForm(rowsConfig);
+      
+
+
+
+      var rowsConfig2 = {
+        renderer: "dome_log", 
+        items: [{
+          type: "row",
+          name: "layout",
+          className:"PlgPanel skin_1 mt_10",
+  
+          list: [
+            {
+              type:"row",
+              className:"layui-col-md10",
+              blockOffset :0,
+              list:[
+                 {type:"settings",labelAlign :"right",labelWidth :100},
+                  {type:"select", required :true, className:"layui-col-md4",name:"systemId", label:"系统id:", 
+                   options:[
+                    {value: "1", text: "Open Air",selected: true},
+                    {value: "2", text: "Private Party",}
+                  ]},
+                  {   
+                    className:"layui-col-md4",    
+                    type: "input",
+                    name: 'username1',
+                    label: '用户名2:',
+                    placeholder: '请输入用户名'
+                   },
+                    {
+                      className:"layui-col-md4",
+                      type: "input",
+                      name: "nickname2",
+                      label: "昵称2:",
+                      placeholder: '请输入昵称',    
+                    }
+              ]
+            },
+            
+            {
+              type:"block",
+              className:"layui-col-md2 right",
+              blockOffset :0,
+              list:[
+              {type:"button", name:"searchBtn", className:"", value:"查询"},
+              {type:"newcolumn"},
+              {type:"button", name:"all", value:"重置"},
+              {type:"newcolumn"},
+              {type:"button", name:"more2", value:"展开",className:"link toggle"}
+              ]
+            },
+            {
+              type:"row",
+              className:" layui-col-md10",     
+              name:"fol",
+              hidden:true,
+              list:[
+                    {type:"settings",labelAlign :"right",labelWidth :100},
+                    {type:"input", className:"layui-col-md4",name:"description", label:"日志描述:"},
+                    {type:"input", className:"layui-col-md4",name:"uri", label:"接口地址:"},
+                    {type:"input", className:"layui-col-md4",name:"userName", label:"操作人:"},
+                    {type:"calendar", className:"layui-col-md4",name:"startTime", label:"开始时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"},
+                      {type:"calendar", className:"layui-col-md4",name:"endTime", label:"结束时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"}
+        
+              ]
+            }
+        
+          ]
+        }]
+      }
+      var rows2 = new PlgForm(rowsConfig2);
+
+      var block_rowConfig={
+        renderer: "block_row", 
+        items : [  
+            { 
+            type:"block",
+            width:1200, 
+            blockOffset :0,
+        //    style:"background:#ff6600",
+            list:[
+            {type:"input",label:"block"},
+            {type:"newcolumn"},
+            {type: "checkbox", name: "ch", position: "label-right",label: "Red", checked: true},
+            {type: "newcolumn"},
+            {type: "radio", name: "n1",position: "label-right", value: 2, label: "Project"},
+            {type: "newcolumn"},
+            {type:"input",rows:3,name:"prj_descr",label:"Project ",value:"Project is great!"},
+            {type:"newcolumn"},
+            {type: "checkbox", name: "ch2", label: "Red", checked: true},
+            {type: "newcolumn"},
+            {type: "radio", name: "n1",value: 2, label: "Orange"},
+
+            ] 
+        },
+
+            {
+              type:"row",
+              list:[
+              {type:"settings",labelAlign :"right",labelWidth :100},
+              {type:"input",label:"row1"},
+              {type: "combo", 
+              name: "myCombo", 
+              className:"layui-col-md3",
+              label: "col1",
+              options:[
+                  {value: "1", text: "Open Air"},
+                  {value: "2", text: "Private Party"}
+              ],
+            },
+              {type:"input",rows:3,className:"layui-col-md3",name:"prj_",label:"textaror",inputTop:6, labelTop:-16,value:"afewefwefwef"
+       },
+              {type:"checkbox",className:"layui-col-md3",labelAlign :"left",label:"用户",position:"label-right",name:"check2"},
+              {type:"radio",className:"layui-col-md3",labelAlign :"left",label:"客户",position:"label-right",name:"hhh"}
+              ]
+            },
+            {type:"newcolumn"},
+            {type:"input",label:"shuru",name:"tan"},
+            {type:"newcolumn"},
+            {type:"input",label:"shuru"},
+            {type:"newcolumn"},
+            {type:"checkbox",label:"客户",name:"check222222",value:"vv"}
+           ]
+      }
+    
+    
+      var rows3 = new PlgForm(block_rowConfig);
+          
+      console.dir(rows2)
+      console.dir(rows3)
+      $(document).on("click","#testClear",function(){
+        rows3.clear();
+
+      });
+   
+      //console.dir(rows3.getInput("prj_descr").value)
+  
+      
+ 
+
+
+        
+   var formData = [
+    {type: "block", 
+    offsetLeft:600,
+    inputTop:30,
+    width: 1600,
+    
+
+    list:[
+    {type:"input",label:"shuru"},
+        {type: "checkbox", name: "n1", value: 1, label: "Red"},
+        {type: "newcolumn"},
+        {type: "radio", name: "n1", value: 2, label: "Orange"},
+       
+    ]}
+];
+
+          var block_rowConfig2={
+        renderer: "block", 
+        items : formData
+        };
+          
+   
+    
+      var rows4 = new PlgForm(block_rowConfig2);
+
+     
+
+  })()
+  
+  
+    
+  </script>
+  
+
+</body>
+
+</html>
