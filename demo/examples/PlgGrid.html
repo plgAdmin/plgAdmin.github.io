@@ -149,6 +149,7 @@
           name: "id",
           type: 'txt',
           width: "200",
+          class: 'k-right',
           hidden: true
         },
         {
@@ -156,6 +157,7 @@
           name: "平台",
           type: 'ro',
           width: "200",
+          align: "center",
           render: function (v) {
             if (v == 'test001') return '测试平台1';
           }
@@ -164,6 +166,7 @@
           id: "enable",
           name: "是否可用",
           type: 'ch',
+          align: "center",
           width: "200"
         },
         {
@@ -171,6 +174,7 @@
           name: "创建时间",
           type: 'ro',
           width: "200",
+          align: "center",
           render: function (v, rd) {
             return rd["id"];
           }
@@ -180,6 +184,7 @@
           name: "创建人",
           type: 'ro',
           width: "*",
+          align: "center",
           render: function (v, d) {
             return "<a href='javascript:void(0);' onclick='aclick(\"" + d["id"] + "\")'>" + v + "</a>";
           }
@@ -225,6 +230,11 @@
     //分页参数 pageSize pageNum
     var grid = new PlgGrid(opts);
     grid.renderTo("grid");
+    grid.setColAlign('center,center,center,center,center,center,center');
+
+    // grid.getGrid().setColAlign('center,center,center,center,center,center,center');
+
+    
     console.log('首次开始加载数据');
     grid.loadData();
     console.log('首次结束加载数据');

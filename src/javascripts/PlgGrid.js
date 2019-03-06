@@ -588,11 +588,19 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 				imp = imp.substr(imp.length-1,1)!="/"?imp+"/":imp;
 				mygrid.setImagePath(imp);
 			}
-				
+        
+      console.log('optsoptsoptsopts');
+      console.log(opts);
+      console.log('optsoptsoptsopts');
 			
    		
    			//[{id:"",name:"",type:'',sort:'',align:'',width:'',hidden:false,default:"",renderer:}]
-   			var cdata = opts.columns.slice(0);
+         var cdata = opts.columns.slice(0);
+         
+
+         console.log('cdatacdatacdata');
+         console.log(cdata);
+         console.log('cdatacdatacdata');
    			
    			columnArray = new Array();
    			headerArray = new Array();
@@ -615,6 +623,7 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			hidenArray.push(false);
 			
 			if(opts.multiselect){
+        console.log('>>>>>>>>>>>>>>>支持多选');
 				columnArray.push("chbx001");
 				
 				//headerArray.push("<input class='plg-grid-second-col' type='checkbox' />");
@@ -654,7 +663,13 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 				}else
 					hidenArray.push(false);
 			}
-			
+      
+      console.log('headerAlignArray.....');
+      console.log(headerAlignArray);
+      console.log('headerAlignArray.....');
+      console.log('alignArray.........');
+      console.log(alignArray.join(','));
+      console.log('alignArray.........');
 			
 			mygrid.setColumnIds(columnArray.toString());
 			
@@ -664,22 +679,23 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			
 			mygrid.setInitWidths(widthArray.toString());          //the widths of columns
 	        
-	        mygrid.setColAlign(alignArray.toString());       //the alignment of columns
+	    // mygrid.setColAlign(alignArray.toString());       //the alignment of columns
+	    mygrid.setColAlign(alignArray.join(','));       //the alignment of columns
 	        
-	        mygrid.setColTypes(typeArray.toString());                //the types of columns
-	       	mygrid.setColSorting(sortArray.toString());          //the sorting types
-	       	
-	       	if(opts.filters){
-	       		if(opts.multiselect)
-	       			mygrid.attachHeader(",,"+opts.filters.toString());
-	       		else
-	       			mygrid.attachHeader(","+opts.filters.toString());
-	       	}
-	       	
-	       	mygrid.enableMultiselect(opts.multiselect);
-	       	mygrid.enableAutoHeight(false);
-	       	mygrid.enableRowsHover(true,"plg-grid-hover");
-	       	//mygrid.enableHeaderMenu("true");
+      mygrid.setColTypes(typeArray.toString());                //the types of columns
+      mygrid.setColSorting(sortArray.toString());          //the sorting types
+      
+      if(opts.filters){
+        if(opts.multiselect)
+          mygrid.attachHeader(",,"+opts.filters.toString());
+        else
+          mygrid.attachHeader(","+opts.filters.toString());
+      }
+      
+      mygrid.enableMultiselect(opts.multiselect);
+      mygrid.enableAutoHeight(false);
+      mygrid.enableRowsHover(true,"plg-grid-hover");
+      //mygrid.enableHeaderMenu("true");
 			   
 			mygrid.opts = opts;
 
@@ -1113,7 +1129,7 @@ eXcell_selectTable.prototype = new eXcell;    // nests all other methods from ba
 			var html='<div class="layui-form plg-clsset-form" >';
 			var k = opts.multiselect?2:1;
 			for(var i=k;i<columnArray.length;i++){
-				html += '<div class=" layui-form-item plg-clsset-item"><input type="checkbox"  lay-filter="plgclssetitem" index='+i+' name="'+columnArray[i]+'" lay-skin="primary" title="'+headerArray[i]+'" '+(hidenArray[i]?'':'checked')+'></div>';
+				html += '<div class="layui-form-item plg-clsset-item"><input type="checkbox"  lay-filter="plgclssetitem" index='+i+' name="'+columnArray[i]+'" lay-skin="primary" title="'+headerArray[i]+'" '+(hidenArray[i]?'':'checked')+'></div>';
 			}
 			html +='<div style="clear:both;margin:0px;height:1px;">&nbsp;</div>';
 			html +='</div>';
