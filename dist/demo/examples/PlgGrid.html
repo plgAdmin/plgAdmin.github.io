@@ -19,10 +19,6 @@
   <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
   <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
   <script src="../../js/prolog.all-0.0.1.js"></script>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
   <style type="text/css">
     #mywin {
       padding: 20px 10px 2px 20px;
@@ -153,19 +149,15 @@
           name: "id",
           type: 'txt',
           width: "200",
+          class: 'k-right',
           hidden: true
         },
         {
           id: "platformId",
           name: "平台",
           type: 'ro',
-<<<<<<< HEAD
-          sort: 'str',
           width: "200",
           align: "center",
-=======
-          width: "200",
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
           render: function (v) {
             if (v == 'test001') return '测试平台1';
           }
@@ -173,29 +165,16 @@
         {
           id: "enable",
           name: "是否可用",
-<<<<<<< HEAD
-          sort: 'str',
           type: 'ch',
-          "text-align": "center",
           align: "center",
-=======
-          type: 'ch',
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
           width: "200"
         },
         {
           id: "createTime",
           name: "创建时间",
-<<<<<<< HEAD
-          sort: 'date',
           type: 'ro',
           width: "200",
-          "text-align": "center",
           align: "center",
-=======
-          type: 'ro',
-          width: "200",
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
           render: function (v, rd) {
             return rd["id"];
           }
@@ -203,16 +182,9 @@
         {
           id: "creatorId",
           name: "创建人",
-<<<<<<< HEAD
-          sort: 'str',
           type: 'ro',
           width: "*",
-          "text-align": "center",
-          align: "center",
-=======
-          type: 'ro',
-          width: "*",
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
+          align: "left",
           render: function (v, d) {
             return "<a href='javascript:void(0);' onclick='aclick(\"" + d["id"] + "\")'>" + v + "</a>";
           }
@@ -258,6 +230,11 @@
     //分页参数 pageSize pageNum
     var grid = new PlgGrid(opts);
     grid.renderTo("grid");
+    grid.setColAlign('center,center,center,center,center,center,center');
+
+    // grid.getGrid().setColAlign('center,center,center,center,center,center,center');
+
+    
     console.log('首次开始加载数据');
     grid.loadData();
     console.log('首次结束加载数据');
@@ -325,7 +302,6 @@
     // console.log('getCellObject');
     // console.log(grid.getCellObject(2, 1));
     // console.log('getCellObject');
-<<<<<<< HEAD
     
     // error
     // console.log('getCellValue');
@@ -342,24 +318,6 @@
     // console.log(grid.getCellValue2(2, 1));
     // console.log('getCellValue2');  
     
-=======
-    
-    // error
-    // console.log('getCellValue');
-    // console.log(grid.getCellValue(2, 0));
-    // console.log('getCellValue');
-
-     // error
-    // console.log('getCellObject2');
-    // console.log(grid.getCellObject2(2, 1));
-    // console.log('getCellObject2');
-    
-    // error
-    // console.log('getCellValue2');
-    // console.log(grid.getCellValue2(2, 1));
-    // console.log('getCellValue2');  
-    
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
     // console.log('setCellValue');
     // console.log(grid.setCellValue(2, 2, 'krui'));
     // console.log('setCellValue');
@@ -420,9 +378,6 @@
     // this.showLoading  没有看到效果
     grid.showLoading();
     grid.closeLoading();
-<<<<<<< HEAD
-    
-=======
     		
     
     var opts2 = {
@@ -471,7 +426,6 @@
     //grid2.setColWidth(2,100);
     //grid2.setColumnColor(["white","#000fes"])
     //grid2.setColumnHidden(2,true);
->>>>>>> 9a95de360bfe2a91c91afaa89fba4385a18ecaa6
   </script>
 
 </body>

@@ -531,8 +531,8 @@
 			
 			mygrid.setInitWidths(widthArray.toString());          //the widths of columns
 	        
-	    // mygrid.setColAlign(alignArray.toString());       //the alignment of columns
-	    mygrid.setColAlign(alignArray.join(','));       //the alignment of columns
+	    mygrid.setColAlign(alignArray.toString());       //the alignment of columns
+	    // mygrid.setColAlign(alignArray.join(','));       //the alignment of columns
 	        
       mygrid.setColTypes(typeArray.toString());                //the types of columns
       mygrid.setColSorting(sortArray.toString());          //the sorting types

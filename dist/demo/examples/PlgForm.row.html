@@ -46,7 +46,7 @@
                 <div id="block_row"></div>
 <div id="block"></div>
 <div class="cl"></div>
-
+<button id="testClear">clear</button>
 <pre class="layui-code" lay-title="" lay-height="" lay-skin="" lay-encode="true">
 删格布局基本配置
 {
@@ -302,9 +302,14 @@ list:[
     
     
       var rows3 = new PlgForm(block_rowConfig);
+          
+      console.dir(rows2)
       console.dir(rows3)
-      console.dir(rows3.addItem)
-      console.dir(rows3.getItemType)
+      $(document).on("click","#testClear",function(){
+        rows3.clear();
+
+      });
+   
       //console.dir(rows3.getInput("prj_descr").value)
   
       

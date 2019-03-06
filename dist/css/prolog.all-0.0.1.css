@@ -112,12 +112,6 @@ table {
   border-collapse: separate;
   border-spacing: 0;
 }
-table caption,
-table th,
-table td {
-  text-align: left;
-  vertical-align: middle;
-}
 a img {
   border: 0;
 }
