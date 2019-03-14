@@ -40,107 +40,11 @@
 <body>
   <div class="view" style="position:absolute;left:0px;top:0px;bottom:0px;right:0px;">
     <div id="grid" style="height: 500px;width: 1200px; padding: 10px;"></div>
-    <div id="grid2" style="height: 500px;width: 1200px;padding: 50px;"></div>
-
-    <div id="mywin">
-      <label>未分配角色</label>
-      <div id="g1" class="cc g">
-        &nbsp;
-      </div>
-      <div class="cc b">
-        <button class="layui-btn layui-btn-primary">
-          <i class="layui-icon layui-icon-down"></i>
-        </button>
-        <button class="layui-btn layui-btn-primary">
-          <i class="layui-icon layui-icon-up"></i>
-        </button>
-      </div>
-      <label style="clear:both;">已分配角色</label>
-      <div id="g2" class="cc g">
-      </div>
-    </div>
-
   </div>
 
 
 
   <script type="text/javascript">
-    function aclick(id) {
-      layer.open({
-        type: 1 //此处以iframe举例
-          ,
-        title: '当你选择该窗体时，即会在最顶端',
-        area: ['1000px', '600px'],
-        shade: 0,
-        maxmin: true,
-        content: $("#mywin"),
-        btn: ['完成', '全部关闭'] //只是为了演示
-          ,
-        btn1: function () {
-          layer.closeAll();
-          $("#g1").empty();
-          $("#g2").empty();
-          $("#mywin").hide();
-        },
-        btn2: function () {
-          $("#mywin").hide();
-          $("#g1").empty();
-          $("#g2").empty();
-          layer.closeAll();
-        },
-        cancel: function () {
-          //右上角关闭回调
-          $("#g1").empty();
-          $("#g2").empty();
-          $("#mywin").hide();
-        },
-        zIndex: layer.zIndex //重点1
-          ,
-        success: function (layero) {
-          var opts3 = {
-            skin: "terrace",
-            //renderer:"grid",
-            columns: [{
-                id: "id",
-                name: "id",
-                type: 'txt',
-                width: 200,
-                hidden: true
-              },
-              {
-                id: "platformId",
-                name: "平台",
-                type: 'ro'
-              },
-              {
-                id: "createTime",
-                name: "创建时间",
-                type: 'ro'
-              }
-            ],
-            multiselect: true,
-            url: "./mockData/PlgGrid/data.json", //数据接口
-            imagePath: "../../vendors/dhtmlx/grid/skins/web/imgs/",
-            type: "get", //数据提交方式，默认为get
-            params: {}, //查询提交参数，分页参数默认为pageNum,pageSize
-            page: true, //是否启用分页
-            totalCount: "totalCount" //总记录数字段，默认totalCount
-          };
-
-          $("#g1").empty();
-          var grid3 = $("#g1").initPlgGrid(opts3);
-          grid3.loadData();
-          grid3.setColWidth(2, 100);
-
-          $("#g2").empty();
-          var grid4 = $("#g2").initPlgGrid(opts3);
-          grid4.loadData();
-          grid4.setColWidth(2, 100);
-          layer.setTop(layero); //重点2
-        }
-      });
-    }
-
     var opts = {
       skin: "terrace",
       //renderer:"grid",
@@ -220,6 +124,13 @@
           click: function () {}
         }
       ],
+      pagebar:{
+        buttons:[
+          {text:"<i class='layui-icon layui-icon-engine '></i>启动",className:"plg-btn-normal",name:"resumeJobs"},
+          {text:"<i class='layui-icon layui-icon-pause '></i>暂停",className:"plg-btn-normal",name:"pauseJobs"},
+          {text:"<i class='layui-icon layui-icon-delete '></i>删除",className:"layui-btn-danger plg-btn-height-auto",name:"delete"}
+        ]
+      },
       imagePath: "../../vendors/dhtmlx/grid/skins/web/imgs/",
       url: "./mockData/PlgGrid/data.json", //数据接口
       type: "get", //数据提交方式，默认为get
@@ -233,7 +144,15 @@
     grid.setColAlign('center,center,center,center,center,center,center');
 
     // grid.getGrid().setColAlign('center,center,center,center,center,center,center');
-
+    grid.attachPageBarEvent(function(name,ids){
+      if(name=="delete"){
+        console.log('批量删除的事件')
+      }else if(name=="pauseJobs"){
+        console.log('批量暂停的事件')
+      }else if(name=="resumeJobs"){
+        console.log('批量启动的事件')
+      }
+    });
     
     console.log('首次开始加载数据');
     grid.loadData();
