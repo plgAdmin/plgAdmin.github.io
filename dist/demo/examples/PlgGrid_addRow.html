@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>PlgGrid</title>
+  <title>PlgGrid_addRow</title>
 
   <!--css-->
   <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
@@ -146,7 +146,20 @@
   //工具栏事件
   grid.attachToolBarEvent("onButtonClick",function(name){
 		if(name=="add"){
-			alert("add");
+
+      var newId = (new Date()).valueOf()
+      // addRow(number/string new_id, number/string text, number/string ind)
+      // new_id 【必填】row ID 必须是唯一的值
+      // text 【必填】行的值，可以是逗号分隔的列表或数组
+      // ind 【非必填，默认是是在数据最末尾】需要插入的位置，
+      grid.addRow(newId, {
+        "id": 4,
+        "platformId": "addRow",
+        "enable": "y",
+        "createTime": "2019/2/22",
+        "creatorId": "krui4"
+      }, 0)
+      alert('addRow')
 		}
 	});
 
@@ -160,154 +173,7 @@
 
   grid.loadData();
 
-    // 此方法添加的数据是只是在显示层面会有变动，刷新之后就会消失，另外在插入的数据永远显示在首行,
-    // 在页面初始化中的render设置，对新增的数据无效
-    // console.log(grid.addRow(3, {
-    //   "id": 10,
-    //   "platformId": "平台十",
-    //   "enable": "y",
-    //   "createTime": "2019/2/20",
-    //   "creatorId": "krui2"
-    // }));
-    
-    		
-    
-    var opts2 = {
-      columns: [
-        {
-          id: "id",
-          name: "id",
-          type: 'txt',
-          width: 200,
-          hidden: true
-        },
-        {
-          id: "platformId",
-          name: "平台",
-          width:100,
-          type: 'ro'
-        },
-        {
-          id: "creatorId",
-          name: "平台",
-          width:100,
-          type: 'co'
-        },
-        {
-          id: "enable",
-          name: "是否可用",
-          type: 'ch'
-        },
-      
-        {
-          id: "createTime",
-          name: "创建时间",
-          type: 'dhxCalendarA'
-        },
-        {
-          id: "creatorId",
-          name: "创建人",
-          type: 'ed'
-        }
-      ],
-      toolbar: [
-        {type: "button", value: "新增",name:"add"},{type:"newcolumn"},
-        {type: "button", value: "删除",name:"delete"},{type:"newcolumn"},
-        {type: "button", value: "保存",name:"save"}
-      ],
-      //filters: ["#text_filter", "#select_filter", "#numeric_filter", "#text_filter", "#text_filter"],
-      // multiselect: true,
-      url: "./mockData/PlgGrid/data.json", //数据接口
-      type: "get", //数据提交方式，默认为get
-      params: {}, //查询提交参数，分页参数默认为pageNum,pageSize
-      page: true, //是否启用分页
-      totalCount: "totalCount" //总记录数字段，默认totalCount
-    };
-    var grid2 = $("#grid2").initPlgGrid(opts2);
-    
 
-    grid2.setDateFormat("%Y-%m-%d %H:%i");
-    var combo=grid2.getCombo(3);
-    console.log(combo);
-    combo.put("a","vv");
-    combo.put("b","sdwd");
-    combo.put("平台一","sdwd");
-    grid2.loadData();
-    //grid2.setColWidth(2,100);
-    grid2.setColumnColor(["white","white","white","white"])
-
-    grid2.attachToolBarEvent("onButtonClick",function(name){
-      if(name=="add"){
-        var nid = "rid"+new Date().getTime();
-        grid2.addRow(nid,{
-          id:nid,
-          platformId:"kkkk"
-        },0);
-      }else if(name==="delete"){
-        grid2.deleteSelectedRows();
-      }else if(name=="save"){
-        var ids = grid2.getChangedRows(true);
-        console.log(ids);
-      }
-      
-    });
-    
-
-    function getColAtrr(ind) {
-      
-      var trueInd = ''
-      if( opts2.multiselect ) {
-        trueInd = ind - 1
-      } else {
-        trueInd = ind
-      }
-      // console.log('>>>>')
-      // console.log(trueInd)
-      // console.log(typeof trueInd)
-      // console.log('>>>>')
-
-      // console.log(opts2.columns[trueInd - 1])
-      if(opts2.columns[trueInd - 1] && opts2.columns[trueInd - 1].id){
-        return opts2.columns[trueInd - 1].id
-      }
-      // console.log(typeof opts2.columns[trueInd - 1])
-      // // console.log(opts2.columns[trueInd - 1].id)
-      // console.log(opts2.columns[trueInd - 1])
-      // for(key in opts2.columns[trueInd - 1]){
-      //   console.log('key::' + key)
-      //   console.log(opts2.columns[trueInd - 1].id)
-      // }
-      // console.log('trueInd:' + trueInd)
-      // return opts2.columns[trueInd - 1].id
-      // console.log(opts2.columns[trueInd - 1].id)
-    }
-
-    grid2.attachEvent("onCellChanged", function(rId, cInd, nValue){
-      // console.log('onCellChanged')
-      // console.log('rId')
-      // console.log(rId)  // 当前记录的id
-      // console.log('rId')
-      // console.log('cInd')
-      // console.log(cInd)
-      // console.log('cInd')
-      // console.log(getColAtrr(cInd))  // 当前被修改的属性
-      
-      // console.log('nValue')
-      // console.log(nValue)   // 当前被修改的新值
-      // console.log('nValue')
-
-      //console.log(rId + '::' + getColAtrr(cInd) + '::' + nValue)
-      //console.log(grid2.getColumn(cInd));
-      return true;
-    });
-
-
-
-    // grid2.attachEvent("onKeyUp", function (inp, ev, name, value){
-    // //your code here
-    //   console.log('your code here')
-    //   return true;
-    // });
   </script>
 
 </body>

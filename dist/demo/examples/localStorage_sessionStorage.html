@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>prolog本地存储</title>
+  <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.css" />
+
+  <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/grid/skins/web/dhtmlxgrid.css" />
+  <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/form/skins/web/dhtmlxform.css" />
+  <link rel="stylesheet" type="text/css" href="../../vendors/layui-master/dist/css/layui.css" />
+  <!--全局样式-->
+
+  <!--<script src="/modules/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>-->
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../vendors/zTree_v3/js/jquery.ztree.core.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../vendors/zTree_v3/js/jquery.ztree.excheck.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+ 
+  <script src="../../src/javascripts/core.js"></script>
+   <script src="../../js/prolog.all-0.0.1.js"></script>
+
+  <!-- icon -->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .k-btn {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      height: 30px;
+      line-height: 22px;
+      border: thin solid #000;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  h3本地存储
+
+  <pre id="data">
+    var userInfo = {
+      name: 'krui',
+      age: '30',
+      sex: 'm',
+      like: 'footer'
+    }
+  </pre>
+
+  <div id="setLocalStorage" class="k-btn">使用Prolog.setLocalStorage存储数据</div>
+  <div id="getLocalStorage" class="k-btn">使用Prolog.getLocalStorage获取存储在localStorage中的数据</div>
+  <div id="removeItemLocalStorage" class="k-btn">使用Prolog.removeItemLocalStorage删除存储在localStorage中指定的数据</div>
+  <div id="setSessionStorage" class="k-btn">使用Prolog.setSessionStorage存储数据</div>
+  <div id="getSessionStorage" class="k-btn">使用Prolog.getSessionStorage获取存储在sessionStorage中的数据</div>
+  <div id="removeItemSessionStorage" class="k-btn">使用Prolog.removeItemSessionStorage删除存储在sessionStorage中指定的数据</div>
+  <script>
+    $(function() {
+      console.log($('#data').html())
+      eval($('#data').html())
+      console.log(userInfo)
+
+      $('#setLocalStorage').on('click', function() {
+        Prolog.setLocalStorage('userInfo', userInfo)
+
+        alert('数据已经存储在localStorage中，请查看')
+      })
+      
+      $('#getLocalStorage').on('click', function(){
+        alert('这是从本地存储中获取的数据::' + JSON.stringify(Prolog.getLocalStorage('userInfo')))
+      })
+
+      $('#removeItemLocalStorage').on('click', function(){
+        Prolog.removeItemLocalStorage('userInfo')
+        alert('已经从本地存储中清除了指定的数据，请查看::' + JSON.stringify(Prolog.getLocalStorage('userInfo')))
+      })
+
+      $('#setSessionStorage').on('click', function() {
+        Prolog.setSessionStorage('userInfo', userInfo)
+
+        alert('数据已经存储在setSessionStorage中，请查看')
+      })
+      
+      $('#getSessionStorage').on('click', function(){
+        alert('这是从本地会话中获取的数据::' + JSON.stringify(Prolog.getSessionStorage('userInfo')))
+      })
+
+      $('#removeItemSessionStorage').on('click', function(){
+        Prolog.removeItemSessionStorage('userInfo')
+        alert('已经从本地存储中清除了指定的数据，请查看::' + JSON.stringify(Prolog.getSessionStorage('userInfo')))
+      })
+    })
+    
+  </script>
+</body>
+</html>

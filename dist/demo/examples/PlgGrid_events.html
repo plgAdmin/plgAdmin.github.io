@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgGrid</title>
+
+  <!--css-->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+  <style type="text/css">
+    #mywin {
+      padding: 20px 10px 2px 20px;
+      display: none;
+    }
+
+    #mywin .cc {
+      width: 100%;
+    }
+
+    #mywin .b button {
+      float: left;
+      margin: 20px 10px;
+    }
+    .qu{font-size:0.12rem;margin-left:10px;background: #fff;width:780px;}
+  </style>
+
+</head>
+
+<body>
+  <div class="view" style="padding:20px;">
+    <blockquote class="layui-elem-quote qu" >常规用法</blockquote>
+    <div id="grid" style="height: 500px;width:800px; padding: 10px;"></div>
+  </div>
+
+
+
+  <script type="text/javascript">
+
+  Prolog.GridImageBasePath = "../../images/PlgGrid/";
+    function aclick(id) {
+      alert(id);
+    }
+    var opts = {
+      //renderer:"grid",
+      columns: [{
+          id: "id",
+          name: "id",
+          type: 'txt',
+          width: "200",
+          class: 'k-right',
+          hidden: true
+        },
+        {
+          id: "platformId",
+          name: "平台",
+          type: 'ro',
+          width: "200",
+          align: "center",
+          render: function (v) {
+            if (v == 'test001') return '测试平台1';
+          }
+        },
+        {
+          id: "enable",
+          name: "是否可用",
+          type: 'ch',
+          align: "center",
+          width: "80"
+        },
+        {
+          id: "createTime",
+          name: "序列",
+          type: 'ro',
+          width: "80",
+          align: "center",
+          render: function (v, rd) {
+            return rd["id"];
+          }
+        },
+        {
+          id: "creatorId",
+          name: "创建人",
+          type: 'ro',
+          width: "150",
+          align: "left",
+          render: function (v, d) {
+            return "<a href='javascript:void(0);' onclick='aclick(\"" + d["id"] + "\")'>" + v + "</a>";
+          }},
+          {
+            id: "op",
+            name: "操作",
+            type: 'button',
+            width: "180",
+            align: "center",
+            render:function(v,d){
+              return '修改^editClick,删除^deleteClick';
+          }}
+      ],
+      multiselect: true,
+      toolbar: [
+        {type: "button", value: "新增",name:"add"}
+      ],
+      pagebar:{
+			  buttons:[
+          {text:"<i class='layui-icon layui-icon-engine '></i>启动",className:"plg-btn-normal",name:"resumeJobs"},
+          {text:"<i class='layui-icon layui-icon-pause '></i>暂停",className:"plg-btn-normal",name:"pauseJobs"},
+          {text:"<i class='layui-icon layui-icon-delete '></i>删除",className:"layui-btn-danger plg-btn-height-auto",name:"delete"}
+        ]
+      },
+      url: "./mockData/PlgGrid/data.json", //数据接口
+      type: "get", //数据提交方式，默认为get
+      params: {}, //查询提交参数，分页参数默认为pageNum,pageSize
+      page: true, //是否启用分页
+      totalCount: "totalCount" //总记录数字段，默认totalCount
+    };
+    //分页参数 pageSize pageNum
+    var grid = new PlgGrid(opts);
+    grid.renderTo("grid");
+    grid.setColAlign('center,center,center,center,center,center,center');
+    grid.loadData();
+    
+    // grid.getGrid().setColAlign('center,center,center,center,center,center,center');
+    //分页栏事件
+    grid.attachPageBarEvent(function(name,ids){
+		if(name=="delete"){
+			alert("delete:"+ids);
+		}else if(name=="pauseJobs"){
+			alert("stop:"+ids);
+		}else if(name=="resumeJobs"){
+			alert("start:"+ids);
+		}
+	});
+
+  //工具栏事件
+  grid.attachToolBarEvent("onButtonClick",function(name){
+		if(name=="add"){
+			alert("add");
+		}
+	});
+
+  function editClick(rowId,rowData){
+    alert("edit:"+rowId);
+  }
+
+  function deleteClick(rowId,rowData){
+    alert("delete:"+rowId);
+  }
+
+  
+
+    
+    	
+  </script>
+
+</body>
+
+</html>

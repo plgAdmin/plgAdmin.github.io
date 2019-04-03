@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgGrid</title>
+
+  <!--css-->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+  <style type="text/css">
+  </style>
+
+</head>
+
+<body onload="doOnLoad()">
+	<h1>Initialize object on page</h1>
+	<p>You can place this JavaScript grid anywhere on your web page, attaching the grid
+		to any object.<br>
+		Set up grid parameters to determine the look of the grid.
+		Specify whether the grid items will be loaded from XML. dhtmlxGrid uses
+		AJAX for fast and flexible data loading.</p>
+	<div id="gridbox" style="width:350px;height:300px;background-color:white;overflow:hidden"></div>
+  <script>
+		var myGrid;
+		function doOnLoad(){
+			myGrid = new dhtmlXGridObject('gridbox');
+      myGrid.setImagePath("./vendors/dhtmlx/grid/codebase/imgs");
+			myGrid.setHeader("ColumnA, Column B");
+      myGrid.setInitWidths("100,*");
+      // myGrid.attachHeader("#text_filter,#text_filter");   // 可以设置头部过滤
+			myGrid.setColAlign("right,left");
+			myGrid.setColTypes("ro,ed");
+			myGrid.setColSorting("int,str");
+			myGrid.enableMultiselect(true);
+			myGrid.init();
+      myGrid.load("./mockData/PlgGrid/grid.xml");
+      // myGrid.detachHeader(0); //detaches the 1st header row
+      '${#stat_multi_total}0:3,Total sum (Sales*Price),-,#cspan,#cspan,#cspan,#cspan,#cspan'
+      myGrid.attachFooter('${#stat_total}, Total sales');
+
+		}
+	</script>
+</body>
+
+</html>

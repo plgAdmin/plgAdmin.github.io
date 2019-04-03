@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>wpTaskConfirm_list</title>
+
+  <!--css-->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+  <style type="text/css">
+    #mywin {
+      padding: 20px 10px 2px 20px;
+      display: none;
+    }
+
+    #mywin .cc {
+      width: 100%;
+    }
+
+    #mywin .b button {
+      float: left;
+      margin: 20px 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="view" style="position:absolute;left:0px;top:0px;bottom:0px;right:0px;">
+    <div id="wpTaskConfirm_list" style="height: 500px;width: 1200px; padding: 10px;"></div>
+  </div>
+
+
+
+  <script type="text/javascript">
+  (function () {
+    var toolbsrlist= [
+        {type: "row",list:[
+            {type: "row",className:" layui-col-md6", blockOffset: 0, list: [
+                {type:"settings",position :"label-top",labelWidth :100},
+                { type: "input", name: "carriername7", className:" layui-col-md6",label: "工号", tooltip: 'll'},
+                { type: "input", name: "carriername8", className:" layui-col-md6",label: "任务单号", tooltip: 'll'}
+            ]},
+            {type: "row",className:" layui-col-md2", blockOffset: 0, list: [
+                {type:"settings",position :"label-top",labelWidth :0},
+                { type: "input", name: "carriername9", className:" layui-col-md12",label: "",tooltip: 'll'}
+            ]
+            },
+            {type:"block",className:"layui-col-md3 right", blockOffset :0,list:[
+                {type:"settings",labelWidth :0},
+                { type: "button", name: "querycarr",value: "查询"}, {type:"newcolumn"},
+                { type: "button", name: "car_Reset1", value: "确认"}, {type:"newcolumn"},
+                { type: "button", name: "car_Reset", value: "重置"}
+            ]
+            }
+        ]}
+    ];
+
+    var wp_opts = {
+        skin: "terrace",
+        columns: [
+            { id: "taskPackageNo", name: "任务包号", type: 'ro', align: "center", width: "180",
+                render: function (v, d) {
+                    return "<a href='javascript:void(0);' onclick='tc_onclik(\"" + d["taskPackageNo"] + "\")'>" + v + "</a>";
+                }
+            },
+            { id: "taskType", name: "任务类型", type: 'ro', align: "center", width: "180"},
+            { id: "getPerson", name: "索取人", type: 'ro', align: "center", width: "180"},
+            { id: "getTime", name: "索取时间 ", type: 'ro', align: "center", width: "180"},
+            { id: "useTime", name: "已耗时(分)", type: 'ro', align: "center", width: "180" },
+            { id: "orderNum", name: "订单数", type: 'ro', align: "center" , width: "180" },
+            { id: "productNum", name: "总件数", type: 'ro', align: "center" , width: "180" },
+            { id: "num_P", name: "品规数", type: 'ro', align: "center", width: "180" },
+            { id: "billid", name: "单据ID", type: 'ro', align: "center", width: "130",hidden: true},
+            { id: "billno ", name: "单据编号", type: 'ro', align: "center", width: "130",hidden: true},
+            { id: "branchid ", name: "仓", type: 'ro', align: "center",hidden: true}
+        ],
+        multiselect: false,
+        toolbar: [{
+            type: "row",
+            className:"PlgPanel skin_1 mt_10",
+            list: [
+                {
+                    type:"row",
+                    className:"layui-col-md10",
+                    blockOffset :0,
+                    list:[
+                        {type:"settings",labelAlign :"right",labelWidth :100},
+                        {type:"select", required :true, className:"layui-col-md4",name:"systemId", label:"系统id:",
+                            options:[
+                                {value: "1", text: "Open Air",selected: true},
+                                {value: "2", text: "Private Party",}
+                            ]},
+                        {
+                            className:"layui-col-md4",
+                            type: "input",
+                            name: 'username1',
+                            label: '用户名2:',
+                            placeholder: '请输入用户名'
+                        },
+                        {
+                            className:"layui-col-md4",
+                            type: "input",
+                            name: "nickname2",
+                            label: "昵称2:",
+                            placeholder: '请输入昵称',
+                        }
+                    ]
+                },
+                {
+                    type:"block",
+                    className:"layui-col-md2 right",
+                    blockOffset :0,
+                    list:[
+                        {type:"button", name:"searchBtn", className:"", value:"查询"},
+                        {type:"newcolumn"},
+                        {type:"button", name:"all", value:"重置"},
+                        {type:"newcolumn"},
+                        {type:"button", name:"more2", value:"展开",className:"link toggle"}
+                    ]
+                },
+                {
+                    type:"row",
+                    className:" layui-col-md10",
+                    name:"fol",
+                    hidden:true,
+                    list:[
+                        {type:"settings",labelAlign :"right",labelWidth :100},
+                        {type:"input", className:"layui-col-md4",name:"description", label:"日志描述:"},
+                        {type:"input", className:"layui-col-md4",name:"uri", label:"接口地址:"},
+                        {type:"input", className:"layui-col-md4",name:"userName", label:"操作人:"},
+                        {type:"calendar", className:"layui-col-md4",name:"startTime", label:"开始时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"},
+                        {type:"calendar", className:"layui-col-md4",name:"endTime", label:"结束时间:",enableTime:true,dateFormat:"%Y-%m-%d %h:%i:%s"}
+                    ]
+                }
+
+            ]
+        }],
+        imagePath: "/prologui/assets/PlgGrid",
+        url: "./wpTaskConfirm.json",//数据接口
+        type: "get",//数据提交方式，默认为get
+        //contentType: "application/json",
+        params: {//查询提交参数，分页参数默认为pageNum,pageSize
+            "pageSize": 10,
+            "pageNum": 1
+        },
+        page: true, //是否启用分页
+        totalCount: "totalCount" //总记录数字段，默认totalCount
+    };
+
+    var wpTaskConfirm_list = new PlgGrid(wp_opts);
+    wpTaskConfirm_list.renderTo("wpTaskConfirm_list");
+    wpTaskConfirm_list.loadData();
+
+   /* wpTaskConfirm_list.attachToolBarEvent("onButtonClick", function(name){
+        if(name=="searchBtn"){
+            var fdata = wpTaskConfirm_list.getToolBarForm().getFormData();
+            wpTaskConfirm_list.setParams(fdata);
+            wpTaskConfirm_list.reload();
+        }
+        if(name=="all"){
+            wpTaskConfirm_list.getToolBarForm().clear();
+            wpTaskConfirm_list.setParams({});
+            wpTaskConfirm_list.reload();
+        }
+    });*/
+
+
+
+
+})();
+  </script>
+
+</body>
+
+</html>

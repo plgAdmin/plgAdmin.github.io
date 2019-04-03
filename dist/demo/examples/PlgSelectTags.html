@@ -18,10 +18,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label plg-inputTags">多选下拉框</label>
       <div class="layui-input-block" id="test" lay-filter="test">
-
       </div>
-
-
     </div>
   </form>
 
@@ -54,8 +51,10 @@
       values: ['bootstrap', 'element'] // 默认选中的值
     };
 
-    var selectPlusTags = new PlgSelectPlusTags(config);
-    // console.log(test.getChecked());
+    var test = new PlgSelectPlusTags(config);
+    console.log(test)
+    // console.log(test.getChecked())
+    
   </script>
 </body>
 

@@ -1,0 +1,154 @@
+{"code": "200",
+  "data": {
+    "list": [
+      {
+        "taskPackageNo": "1",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "2",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "3",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "4",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "5",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "6",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "7",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "8",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "9",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "10",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "11",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "12",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "13",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      },
+      {
+        "taskPackageNo": "14",
+        "taskType": "拣货下架",
+        "getPerson": "张三",
+        "getTime": "2019-03-21 12:12:12",
+        "useTime": "0.3",
+        "orderNum": "10",
+        "productNum": "20",
+        "num_P": "30"
+      }
+    ],
+    "totalCount": 19,
+    "pageCount": 2,
+    "pageNum": 1,
+    "pageSize": 10,
+    "startRow": 0,
+    "endRow": 0
+  },
+  "message": "查询成功",
+  "success": "true"
+}

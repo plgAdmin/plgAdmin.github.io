@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgGrid</title>
+
+  <!--css-->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+
+</head>
+
+<body onload="doOnLoad()">
+  <h3>做表单切换的利器，可以少生成几个实例</h3>
+	<h1>Reload with new structure</h1>
+	<p> You are allowed to clear data and structure of grid and then load new data from XML file.</p>
+	<div id="gridbox" style="width:750px;height:350px;overflow:hidden"></div>
+  <a href='#alfa' onClick="ser()">Reload grid with another structure</a>
+  
+  <script>
+		var myGrid;
+		function doOnLoad(){
+			myGrid = new dhtmlXGridObject('gridbox');
+			myGrid.setImagePath("/vendors/dhtmlx/grid/skins/web/imgs/dhxgrid_web/");
+			myGrid.enableAutoWidth(true);
+			myGrid.enableAutoHeight(true);
+			myGrid.load("./mockData/PlgGrid/gird_gridH.xml");
+		}
+		function ser(){
+			myGrid.clearAll(true);
+			myGrid.load("./mockData/PlgGrid/gird_gridH3.xml");
+		}
+	</script>
+</body>
+
+</html>

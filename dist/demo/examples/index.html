@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+    <!--字体字体样式-->
+  
+    <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.css" />
+
+    <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/grid/skins/web/dhtmlxgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../../vendors/dhtmlx/form/skins/web/dhtmlxform.css" />
+    <link rel="stylesheet" type="text/css" href="../../vendors/layui-master/dist/css/layui.css" />
+    <!--全局样式-->
+
+    <!--<script src="/modules/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="../../vendors/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../vendors/layui-master/dist/layui.all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../vendors/zTree_v3/js/jquery.ztree.core.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../vendors/zTree_v3/js/jquery.ztree.excheck.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+   
+    <script src="../../src/javascripts/core.js"></script>
+     <script src="../../js/prolog.all-0.0.1.js"></script>
+
+    <!-- icon -->
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+    <style>
+        div.disabled .dhxform_textarea {
+            color: red !important;
+            font-size: 14px;
+            /* background-color: #edeef2 !important; */
+        }
+
+        .layui-card-body:after {
+            content: "";
+            display: table;
+            clear: both;
+
+        }
+
+        .layui-carousel>[carousel-item] {
+            overflow: unset;
+        }
+
+        .grid-container-full {
+            padding: 15px 15px 5px 15px;
+        }
+
+        /*JSON展示*/
+        pre {
+            outline: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-admin">
+    <div class="layui-row" style="height: 100%;background-color:#fbfbfb;padding: 15px 15px 5px 15px;">
+        <div class="layui-col-md8">
+            <div id="body-view" style="clear:both;height: 500px;"></div>
+            <div id="body-view1"></div>
+        </div>
+        <div class="layui-col-md4" style="height: 90%;">
+            <pre id="rsp_msg" style="clear:both;font-size:14px;overflow: auto;height: 100%;"></pre>
+        </div>
+    </div>
+</body>
+
+<script>
+    (function () {
+
+        locngroupFormInit();
+
+        function locngroupFormInit() {
+            var g2Cfg = {
+                toolbar: [
+                    { type: "settings", labelAlign: 'left', labelWidth: 65 },
+                    { type: "input", name: 'search', label: '查询条件:', offsetLeft: 5, placeholder: '请输入名称', width: 300 }, { type: "newcolumn" },
+                    { type: "button", name: "btn_search", value: "查询" }
+                ],
+                columns: [
+                    { id: "p_id", name: "p_id", type: 'ro', width: "50", hidden: true },
+                    { id: "p_username", name: "p_username", type: 'ro', width: "200" },
+                    { id: "p_nickname", name: "p_nickname", type: 'ro', width: "200" },
+                ],
+                multiselect: true,
+                imagePath: "../../images/PlgGrid/",
+                url: "./mockData/index.json",
+                type: "get",
+                pagebar: {
+                    type: 'simple' //full simple min
+                },
+                params: { "pageNum": 1, "pageSize": 10 },
+                page: true, //是否启用分页
+                totalCount: "totalCount",
+            };
+
+            var formcfg = {
+                renderer: "body-view",
+                imagePath: "../../images/PlgGrid/",
+                items: [
+                    { type: "settings", labelWidth: 100, position: "label-left", labelAlign: "right" },
+                    {
+                        type: "block",
+                        list: [
+                            {
+                                width: 800,
+                                type: "selectTable",
+                                placeholder: '请选择用户',
+                                readonly: false,
+                                table: g2Cfg,
+                                tableWidth: 550,
+                                tableHeight: 500,
+                                fieldText: "p_username",
+                                fieldValue: ["p_id"],
+                                name: "p_t1",
+                                label: "1-操作用户：",
+                                listener: {
+                                    "afterClose": function (text, value, sgrid) {
+                                      console.log('afterClose')
+                                        console.log(text);
+                                        console.log(value);
+                                    },
+                                    "init": function (sgrid) {
+                                      console.log('init')
+
+                                        sgrid.attachToolBarEvent("onButtonClick", function (name) {
+                                            // 查询
+                                            if (name === "btn_search") {
+                                                sgrid.setParams(sgrid.getToolBarForm().getFormData());
+                                                sgrid.reload();
+                                            }
+                                        });
+                                    },
+                                    "afterSelect": function (status, selectId, sgrid) {
+                                      console.log('afterSelect')
+                                        console.log(status + "|" + selectId);
+                                    }
+                                }
+                            },
+                            /*{
+                                type: "blockSelect",
+                                disabled: false,
+                                multiSelect: true,
+                                data: rsp.billtype,
+                                name: "p_t3",
+                                label: "3-单据类型：",
+                                width: 800
+                            },
+                            {
+                                type: "blockSelect",
+                                disabled: false,
+                                multiSelect: false,
+                                data: rsp.LocationSortLimit,
+                                name: "p_t4",
+                                label: "4-其它属性："
+                            }*/
+                        ]
+                    }
+
+                ]
+            };
+            var form1 = new PlgForm(formcfg);
+            form1.getDForm().setText("p_t1", "jwl,jiangf,jiangcl");
+            form1.setItemValue("p_t1", '[{"p_id":"U0000000142"},{"p_id":"U0000000143"},{"p_id":"U0000000144"}]');
+            // form1.setItemValue("p_t2", '2');
+        }
+    })();
+</script>
+
+</html>

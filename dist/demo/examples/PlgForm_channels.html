@@ -36,55 +36,21 @@
   <script type="text/javascript">
     var config = {
       renderer: "form1",
-      items: [{
-          type: "settings",
-          position: "label-left",
-          width: 500,
-          labelWidth: 80
-        },
-        {
-          type: "fieldset",
-          name: "calculator",
-          label: "用户",
-          list: [{
-              type: "input",
-              name: 'username',
-              label: '用户名:',
-              placeholder: '请输入用户名',
-              width: 400,
-              required: true
-            },
-            {
-              type: "input",
-              name: "nickname",
-              label: "昵称:",
-              placeholder: '请输入昵称',
-              width: 400,
-              required: true
-            },
-            {
-              type: "input",
-              name: "phone",
-              label: "联系方式:",
-              placeholder: '请输入联系方式',
-              width: 400,
-              required: true
-            },
-            {
-              type: "button",
-              name: "save",
-              width: 50,
-              offsetTop: 2,
-              value: "保存"
-            }
-          ]
-        }
-      ]
+      items: [
+				{type: "settings", position: "label-left", labelWidth: 140, inputWidth: 160},
+				{type: "label", label: "New project"},
+				{type: "combo", label: "Channels", comboType: "checkbox", name: "channels", options:[
+					{text: "2.0 Stereo", value: "2_0", selected: true},
+					{text: "5.1 Dolby Digital", value: "5_1", selected: true}
+				]}
+			]
     };
 
     var form1 = new PlgForm(config);
 
     console.dir(form1)
+    // console.log(form1.getCheckedValue())
+    console.log(form1.getFormData())
   </script>
 
 </body>

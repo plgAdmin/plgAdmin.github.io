@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PlgGrid</title>
+
+  <!--css-->
+  <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_799562_3raw7fipf6.css" />
+  <link rel="stylesheet" href="../../vendors/layui-master/dist/css/layui.rem.css" />
+  <link rel="stylesheet" href="../../css/prolog.all-0.0.1.css" />
+
+  <script src="../../vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../vendors/layui-master/dist/layui.all.js"></script>
+  <script src="../../vendors/vipspa-master/build/vipspa.js"></script>
+  <script src="../../vendors/dhtmlx/grid/codebase/dhtmlxgrid.js"></script>
+  <script src="../../vendors/dhtmlx/form/codebase/dhtmlxform.js"></script>
+  <script src="../../js/prolog.all-0.0.1.js"></script>
+  <style>
+		.even{
+			background-color:#E6E6FA;
+		}
+		.uneven{
+			background-color:#F0F8FF;
+		}
+	</style>
+
+</head>
+
+<body onload="doOnLoad()">
+	<h1>Refresh</h1>
+	<p>Refresh operation doesn't recreate grid, it just updates data in it, as result the state of grid is fully preserved.</p>
+	<div id="gridbox" style="width:7px;height:350px;overflow:hidden"></div>
+	<br>
+	<div><a href="#" onClick="myGrid.clearAll(); myGrid.load('./mockData/PlgGrid/grid_first.xml');">Reload grid - classic way</a></div>
+	<div><a href="#" onClick="myGrid.load('./mockData/PlgGrid/grid_second.xml');">Reload grid - clear grid from XML</a></div>
+	<div><a href="#" onClick="myGrid.updateFromXML('./mockData/PlgGrid/grid_third.xml');">Reload grid - refresh data only </a></div>
+
+  <script>
+		var myGrid;
+		function doOnLoad(){
+			myGrid = new dhtmlXGridObject('gridbox');
+			myGrid.setImagePath("/vendors/dhtmlx/grid/skins/web/imgs/dhxgrid_web/");
+			myGrid.setHeader("Sales,edtxt,ed,Price,In Store,Shipping,Bestseller,Date of Publication");
+			myGrid.setInitWidths("70,150,100,80,80,80,80,100");
+			myGrid.setColAlign("right,left,left,right,center,left,center,center");
+			myGrid.setColTypes("dyn,edtxt,ed,price,ch,co,ra,ro");
+			myGrid.setColSorting("int,str,str,int,str,str,str,date");
+			var combobox = myGrid.getCombo(5);
+			combobox.put("1","1 Hour");
+			combobox.put("12","12 Hours");
+			combobox.put("24","24 Hours");
+			combobox.put("48","2 days");
+			combobox.put("168","1 week");
+			combobox.put("pick","pick up");
+			combobox.put("na","na");
+			myGrid.enableAutoWidth(true);
+			myGrid.enableAutoHeight(true);
+			myGrid.init();
+			myGrid.enableAlterCss("even","uneven");
+			myGrid.load("./mockData/PlgGrid/grid_clear.xml");
+		}
+	</script>
+</body>
+
+</html>
